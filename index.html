@@ -4,428 +4,382 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Propuesta Energética Personalizada | HQS Energy</title>
+
   <style>
-    :root {
-      --blue: #00AEEF;
-      --gold: #F5A623;
-      --ink: #0B1220;
-      --muted: #667085;
-      --soft: #F5F8FB;
-      --white: #FFFFFF;
-      --line: #E6EAF0;
+    :root{
+      --blue:#35AEE2;
+      --dark:#0E2A47;
+      --gold:#F5A623;
+      --green:#69C75F;
+      --soft:#F3F8FC;
+      --ink:#101828;
+      --muted:#667085;
+      --line:#E6EDF3;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:white;line-height:1.5}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: var(--white);
-      line-height: 1.5;
+    .nav{
+      position:fixed;top:18px;left:50%;transform:translateX(-50%);
+      width:min(1120px,calc(100% - 32px));z-index:10;
+      background:rgba(255,255,255,.9);backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.7);border-radius:999px;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:10px 18px;box-shadow:0 18px 50px rgba(16,24,40,.12)
     }
 
-    .hero {
-      min-height: 100vh;
-      padding: 48px 6vw;
-      display: flex;
-      align-items: center;
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--dark)}
+    .brand img{width:42px;height:42px;object-fit:contain}
+    .nav-links{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+    .nav-btn{background:linear-gradient(135deg,var(--blue),var(--gold));color:white;padding:11px 18px;border-radius:999px;font-weight:800}
+
+    .hero{
+      min-height:100vh;padding:150px 6vw 90px;color:white;
       background:
-        linear-gradient(90deg, rgba(11,18,32,.88), rgba(11,18,32,.42)),
-        url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=80');
-      background-size: cover;
-      background-position: center;
-      color: white;
+        radial-gradient(circle at 85% 20%,rgba(245,166,35,.35),transparent 30%),
+        radial-gradient(circle at 15% 80%,rgba(53,174,226,.35),transparent 35%),
+        linear-gradient(120deg,rgba(14,42,71,.96),rgba(14,42,71,.65)),
+        url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2200&q=80");
+      background-size:cover;background-position:center;
+      display:flex;align-items:center
     }
 
-    .hero-content { max-width: 760px; }
-
-    .brand {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      margin-bottom: 80px;
+    .hero-grid{
+      max-width:1180px;margin:auto;display:grid;
+      grid-template-columns:1.1fr .9fr;gap:42px;align-items:center
     }
 
-    .eyebrow {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 18px;
+    .hero-logo{
+      background:white;width:230px;padding:18px;border-radius:28px;
+      margin-bottom:36px;box-shadow:0 22px 70px rgba(0,0,0,.22)
     }
 
-    h1 {
-      font-size: clamp(44px, 7vw, 84px);
-      line-height: .95;
-      letter-spacing: -0.05em;
-      margin-bottom: 32px;
+    .eyebrow{
+      color:var(--gold);font-weight:900;text-transform:uppercase;
+      letter-spacing:.14em;font-size:13px;margin-bottom:18px
     }
 
-    .hero h2 {
-      font-size: clamp(26px, 4vw, 42px);
-      margin-bottom: 8px;
+    h1{
+      font-size:clamp(46px,7vw,86px);line-height:.94;
+      letter-spacing:-.06em;margin-bottom:28px
     }
 
-    .hero p { color: rgba(255,255,255,.82); font-size: 19px; }
+    .hero p{font-size:21px;color:rgba(255,255,255,.82);max-width:680px;margin-bottom:32px}
 
-    .btn {
-      display: inline-block;
-      margin-top: 36px;
-      padding: 16px 28px;
-      border-radius: 999px;
-      background: var(--blue);
-      color: white;
-      text-decoration: none;
-      font-weight: 700;
+    .client-box{
+      display:inline-block;background:rgba(255,255,255,.13);
+      border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(14px);
+      border-radius:30px;padding:26px
     }
 
-    section { padding: 96px 6vw; }
+    .client-box span{display:block;color:rgba(255,255,255,.72);font-size:14px}
+    .client-box strong{display:block;font-size:30px;margin:4px 0}
 
-    .container { max-width: 1180px; margin: 0 auto; }
-
-    .section-title {
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1;
-      letter-spacing: -0.04em;
-      margin-bottom: 20px;
+    .hero-card{
+      background:rgba(255,255,255,.96);color:var(--ink);
+      border-radius:38px;padding:34px;box-shadow:0 24px 80px rgba(16,24,40,.18)
     }
 
-    .section-copy {
-      max-width: 740px;
-      color: var(--muted);
-      font-size: 20px;
-      margin-bottom: 44px;
+    .hero-card h2{color:var(--dark);font-size:25px;margin-bottom:24px}
+
+    .metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .metric{
+      background:#F8FBFD;border:1px solid var(--line);border-radius:24px;
+      padding:20px
+    }
+    .metric small{color:var(--muted)}
+    .metric strong{display:block;color:var(--dark);font-size:30px;letter-spacing:-.05em}
+
+    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+    .btn{
+      display:inline-flex;padding:15px 24px;border-radius:999px;
+      background:linear-gradient(135deg,var(--blue),var(--gold));
+      color:white;font-weight:900
+    }
+    .btn.secondary{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3)}
+
+    section{padding:90px 6vw}
+    .container{max-width:1180px;margin:auto}
+    .soft{background:var(--soft)}
+    .title{font-size:clamp(34px,5vw,60px);line-height:.98;letter-spacing:-.055em;color:var(--dark);margin-bottom:18px}
+    .copy{font-size:19px;color:var(--muted);max-width:720px;margin-bottom:42px}
+
+    .trust{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+      margin-top:-50px;position:relative;z-index:2
+    }
+    .trust div{
+      background:white;border:1px solid var(--line);border-radius:26px;
+      padding:24px;font-weight:800;color:var(--dark);
+      box-shadow:0 18px 60px rgba(16,24,40,.08)
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .summary-card{
+      background:white;border:1px solid var(--line);border-radius:30px;
+      padding:28px;box-shadow:0 18px 55px rgba(16,24,40,.06)
+    }
+    .summary-card small{color:var(--muted)}
+    .summary-card strong{display:block;color:var(--dark);font-size:35px;letter-spacing:-.05em;margin-top:12px}
+
+    .comparison{
+      display:grid;grid-template-columns:1fr 74px 1fr;gap:22px;align-items:center
     }
 
-    .card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 28px;
-      min-height: 168px;
-      box-shadow: 0 16px 50px rgba(16,24,40,.06);
+    .compare-card{
+      background:white;border:1px solid var(--line);border-radius:38px;
+      padding:34px;box-shadow:0 24px 80px rgba(16,24,40,.12)
     }
 
-    .label {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 18px;
+    .compare-card.hqs{
+      background:linear-gradient(145deg,#071F38,#0F4774);
+      color:white;border:none
     }
 
-    .value {
-      font-size: 34px;
-      letter-spacing: -0.04em;
-      font-weight: 800;
+    .logo-box{
+      background:white;border-radius:24px;padding:18px;height:105px;
+      display:flex;align-items:center;margin-bottom:30px
+    }
+    .logo-box img{max-height:72px;width:auto}
+
+    .price{
+      font-size:clamp(58px,7vw,90px);font-weight:950;
+      letter-spacing:-.075em;line-height:.9;margin-bottom:8px
     }
 
-    .soft { background: var(--soft); }
+    .muted{color:var(--muted)}
+    .hqs .muted{color:rgba(255,255,255,.74)}
 
-    .solution {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 44px;
-      align-items: center;
+    .compare-list{margin-top:26px;display:grid;gap:14px}
+    .compare-list div{
+      display:flex;justify-content:space-between;gap:20px;
+      border-top:1px solid rgba(102,112,133,.18);padding-top:14px
+    }
+    .hqs .compare-list div{border-top-color:rgba(255,255,255,.18)}
+
+    .vs{
+      width:74px;height:74px;border-radius:999px;
+      background:linear-gradient(135deg,var(--blue),var(--gold));
+      color:white;font-weight:950;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 18px 50px rgba(53,174,226,.28)
     }
 
-    .photo {
-      height: 580px;
-      border-radius: 36px;
-      background: url('https://images.unsplash.com/photo-1595437193398-f24279553f4f?auto=format&fit=crop&w=1400&q=80');
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 24px 70px rgba(16,24,40,.16);
+    .savings{
+      margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+      background:linear-gradient(135deg,rgba(53,174,226,.11),rgba(245,166,35,.17));
+      border:1px solid rgba(53,174,226,.18);border-radius:30px;padding:26px
+    }
+    .savings strong{display:block;font-size:32px;color:var(--dark);letter-spacing:-.05em}
+
+    .program{
+      background:white;border:1px solid var(--line);border-radius:38px;
+      padding:38px;box-shadow:0 24px 80px rgba(16,24,40,.12)
     }
 
-    .metrics {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 38px;
-    }
+    .program-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:30px}
+    .program-item{background:#F8FBFD;border:1px solid var(--line);border-radius:24px;padding:22px}
+    .program-item strong{display:block;color:var(--dark);font-size:20px;margin-bottom:6px}
 
-    .compare {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+    .step{
+      background:white;border:1px solid var(--line);border-radius:28px;
+      padding:24px;box-shadow:0 16px 50px rgba(16,24,40,.06)
     }
+    .step b{display:block;color:var(--gold);font-size:28px;margin-bottom:14px}
+    .step strong{display:block;color:var(--dark);font-size:20px;margin-bottom:8px}
+    .step p{color:var(--muted);font-size:15px}
 
-    .compare-card {
-      border-radius: 36px;
-      padding: 42px;
-      background: white;
-      border: 1px solid var(--line);
+    .final{
+      text-align:center;color:white;border-radius:46px;padding:90px 30px;
+      background:
+        radial-gradient(circle at 18% 20%,rgba(53,174,226,.38),transparent 30%),
+        radial-gradient(circle at 84% 76%,rgba(245,166,35,.38),transparent 30%),
+        linear-gradient(135deg,#071F38,#0E2A47)
     }
+    .final .title{color:white}
+    .final p{color:rgba(255,255,255,.74);font-size:20px}
 
-    .compare-card.dark {
-      background: var(--ink);
-      color: white;
-      border: none;
-    }
-
-    .big-price {
-      font-size: clamp(52px, 7vw, 88px);
-      letter-spacing: -0.06em;
-      font-weight: 800;
-      margin: 24px 0 12px;
-    }
-
-    .bar-wrap {
-      margin-top: 42px;
-      display: grid;
-      gap: 28px;
-    }
-
-    .bar-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .bar {
-      height: 18px;
-      background: #DDE5EE;
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .bar span {
-      display: block;
-      height: 100%;
-      width: var(--w);
-      background: linear-gradient(90deg, var(--blue), var(--gold));
-      border-radius: 999px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-    }
-
-    .step {
-      border-top: 3px solid var(--blue);
-      padding-top: 18px;
-      color: var(--muted);
-    }
-
-    .step strong {
-      display: block;
-      color: var(--ink);
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
-
-    .advisor {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 44px;
-      align-items: center;
-    }
-
-    .avatar {
-      width: 320px;
-      height: 320px;
-      border-radius: 36px;
-      background: linear-gradient(135deg, var(--blue), var(--gold));
-    }
-
-    .final {
-      text-align: center;
-      background: var(--ink);
-      color: white;
-      border-radius: 44px;
-      padding: 88px 30px;
-    }
-
-    .final p {
-      color: rgba(255,255,255,.72);
-      font-size: 20px;
-    }
-
-    .secondary {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,.28);
-      margin-left: 12px;
-    }
-
-    @media (max-width: 900px) {
-      .grid, .solution, .compare, .steps, .advisor { grid-template-columns: 1fr; }
-      .photo { height: 380px; }
-      .metrics { grid-template-columns: 1fr; }
-      .avatar { width: 100%; height: 260px; }
-      section { padding: 70px 6vw; }
-      .brand { margin-bottom: 54px; }
-      .secondary { margin-left: 0; }
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .hero-grid,.trust,.summary,.comparison,.savings,.program-grid,.steps{grid-template-columns:1fr}
+      .metrics{grid-template-columns:1fr}
+      .vs{justify-self:center}
+      section{padding:70px 6vw}
+      .hero{padding-top:130px}
     }
   </style>
 </head>
+
 <body>
 
+  <nav class="nav">
+    <div class="brand">
+      <img src="./assets/logos/hqs-logo.png" alt="HQS Energy">
+      <span>HQS Energy</span>
+    </div>
+    <div class="nav-links">
+      <a href="#resumen">Resumen</a>
+      <a href="#comparacion">Comparación</a>
+      <a href="#programa">Programa</a>
+      <a href="#pasos">Pasos</a>
+      <a class="nav-btn" href="#continuar">Continuar</a>
+    </div>
+  </nav>
+
   <header class="hero">
-    <div class="hero-content">
-      <div class="brand">HQS Energy</div>
-      <div class="eyebrow">Propuesta energética personalizada</div>
-      <h1>Tu transición energética comienza aquí.</h1>
-      <h2>Natalie Torres</h2>
-      <p>Juncos, Puerto Rico · Preparada el 12 de junio de 2026</p>
-      <a href="#resumen" class="btn">Ver mi propuesta</a>
+    <div class="hero-grid">
+      <div>
+        <div class="hero-logo">
+          <img src="./assets/logos/hqs-logo.png" alt="HQS Energy">
+        </div>
+
+        <div class="eyebrow">Propuesta residencial personalizada</div>
+        <h1>Propuesta Energética Personalizada</h1>
+        <p>Una solución residencial preparada por HQS Energy para ayudarte a reducir dependencia de la red y obtener mayor estabilidad energética.</p>
+
+        <div class="client-box">
+          <span>Preparada exclusivamente para</span>
+          <strong>Natalie Torres</strong>
+          <span>Juncos, Puerto Rico · 12 de junio de 2026</span>
+        </div>
+
+        <div class="btns">
+          <a class="btn" href="#resumen">Ver propuesta</a>
+          <a class="btn secondary" href="#comparacion">Comparar LUMA vs HQS</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h2>Resumen del sistema</h2>
+        <div class="metrics">
+          <div class="metric"><small>Sistema recomendado</small><strong>10.4 kW</strong></div>
+          <div class="metric"><small>Producción año 1</small><strong>15,587</strong></div>
+          <div class="metric"><small>Cobertura estimada</small><strong>110%</strong></div>
+          <div class="metric"><small>Respaldo energético</small><strong>Powerwall 3</strong></div>
+        </div>
+      </aside>
     </div>
   </header>
 
+  <section>
+    <div class="container trust">
+      <div>Energía solar residencial</div>
+      <div>Monitoreo del sistema</div>
+      <div>Servicio local</div>
+      <div>Soporte especializado</div>
+    </div>
+  </section>
+
   <section id="resumen">
     <div class="container">
-      <h2 class="section-title">Resumen de tu propuesta</h2>
-      <p class="section-copy">
-        Basándonos en el análisis de consumo energético de tu propiedad, HQS Energy preparó una solución diseñada para reducir dependencia de la red eléctrica tradicional y brindar mayor estabilidad energética a largo plazo.
-      </p>
+      <h2 class="title">Resumen de tu propuesta</h2>
+      <p class="copy">Esta propuesta presenta el consumo actual de la propiedad, la producción estimada y la solución recomendada por HQS Energy.</p>
 
-      <div class="grid">
-        <div class="card">
-          <div class="label">Consumo anual</div>
-          <div class="value">14,170 kWh</div>
-        </div>
-        <div class="card">
-          <div class="label">Factura promedio</div>
-          <div class="value">$285/mes</div>
-        </div>
-        <div class="card">
-          <div class="label">Sistema recomendado</div>
-          <div class="value">10.4 kW</div>
-        </div>
-        <div class="card">
-          <div class="label">Cobertura estimada</div>
-          <div class="value">110%</div>
-        </div>
+      <div class="summary">
+        <div class="summary-card"><small>Consumo anual</small><strong>14,170 kWh</strong></div>
+        <div class="summary-card"><small>Factura promedio</small><strong>$285/mes</strong></div>
+        <div class="summary-card"><small>Sistema recomendado</small><strong>10.4 kW</strong></div>
+        <div class="summary-card"><small>Cobertura estimada</small><strong>110%</strong></div>
       </div>
     </div>
   </section>
 
-  <section class="soft">
-    <div class="container solution">
-      <div class="photo"></div>
-      <div>
-        <h2 class="section-title">Una solución diseñada para tu hogar</h2>
-        <p class="section-copy">
-          Esta propuesta combina producción solar, almacenamiento energético y administración continua bajo el programa de HQS Energy.
-        </p>
-
-        <div class="metrics">
-          <div class="card"><div class="label">Producción año 1</div><div class="value">15,587 kWh</div></div>
-          <div class="card"><div class="label">Consumo actual</div><div class="value">14,170 kWh</div></div>
-          <div class="card"><div class="label">Respaldo energético</div><div class="value">Powerwall 3</div></div>
-          <div class="card"><div class="label">Cobertura</div><div class="value">110%</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
+  <section id="comparacion" class="soft">
     <div class="container">
-      <h2 class="section-title">Comparación económica</h2>
-      <p class="section-copy">Una vista clara entre el escenario actual y la propuesta energética de HQS Energy.</p>
+      <h2 class="title">LUMA vs HQS Energy</h2>
+      <p class="copy">Una comparación clara entre tu escenario actual y el programa residencial propuesto por HQS Energy.</p>
 
-      <div class="compare">
+      <div class="comparison">
         <div class="compare-card">
+          <div class="logo-box">
+            <img src="./assets/logos/luma-logo.png" alt="LUMA">
+          </div>
+
           <div class="eyebrow">Situación actual</div>
-          <h3>LUMA Energy</h3>
-          <div class="big-price">$285</div>
-          <p>Pago promedio mensual estimado</p>
+          <div class="price">$285</div>
+          <p class="muted">Pago promedio mensual estimado</p>
+
+          <div class="compare-list">
+            <div><span>Proveedor</span><strong>LUMA Energy</strong></div>
+            <div><span>Consumo anual</span><strong>14,170 kWh</strong></div>
+            <div><span>Respaldo energético</span><strong>No incluido</strong></div>
+            <div><span>Exposición a aumentos</span><strong>Alta</strong></div>
+          </div>
         </div>
 
-        <div class="compare-card dark">
-          <div class="eyebrow">Con HQS Energy</div>
-          <h3>Programa HQS Energy</h3>
-          <div class="big-price">$210</div>
-          <p>Pago mensual proyectado</p>
+        <div class="vs">VS</div>
+
+        <div class="compare-card hqs">
+          <div class="logo-box">
+            <img src="./assets/logos/hqs-logo.png" alt="HQS Energy">
+          </div>
+
+          <div class="eyebrow">Programa propuesto</div>
+          <div class="price">$210</div>
+          <p class="muted">Pago mensual proyectado</p>
+
+          <div class="compare-list">
+            <div><span>Proveedor</span><strong>HQS Energy</strong></div>
+            <div><span>Producción año 1</span><strong>15,587 kWh</strong></div>
+            <div><span>Respaldo energético</span><strong>Powerwall 3</strong></div>
+            <div><span>Estabilidad energética</span><strong>Mayor</strong></div>
+          </div>
         </div>
       </div>
 
-      <div class="grid" style="margin-top:18px;">
-        <div class="card"><div class="label">Ahorro mensual estimado</div><div class="value">$75</div></div>
-        <div class="card"><div class="label">Ahorro anual estimado</div><div class="value">$900</div></div>
-        <div class="card"><div class="label">Producción solar</div><div class="value">15,587</div></div>
-        <div class="card"><div class="label">Término</div><div class="value">25 años</div></div>
+      <div class="savings">
+        <div><span>Ahorro mensual estimado</span><strong>$75</strong></div>
+        <div><span>Ahorro anual estimado</span><strong>$900</strong></div>
+        <div><span>Término del acuerdo</span><strong>25 años</strong></div>
       </div>
     </div>
   </section>
 
-  <section class="soft">
+  <section id="programa">
     <div class="container">
-      <h2 class="section-title">Producción energética</h2>
-      <p class="section-copy">La propuesta está diseñada para producir más energía que el consumo anual estimado de la propiedad.</p>
+      <div class="program">
+        <div class="eyebrow">Programa HQS Energy</div>
+        <h2 class="title">¿Cómo funciona?</h2>
+        <p class="copy">HQS Energy diseña, instala y administra la solución energética propuesta para tu residencia. La energía producida será suministrada conforme a los términos establecidos en el Acuerdo de Compra de Energía de HQS Energy.</p>
 
-      <div class="bar-wrap">
-        <div>
-          <div class="bar-label"><span>Consumo actual</span><span>14,170 kWh</span></div>
-          <div class="bar"><span style="--w: 91%"></span></div>
+        <div class="program-grid">
+          <div class="program-item"><strong>Diseño energético</strong><span>Evaluación de consumo, propiedad y sistema recomendado.</span></div>
+          <div class="program-item"><strong>Instalación residencial</strong><span>Proceso coordinado por el equipo correspondiente.</span></div>
+          <div class="program-item"><strong>Monitoreo</strong><span>Seguimiento del desempeño energético según aplique.</span></div>
+          <div class="program-item"><strong>Servicio y mantenimiento</strong><span>Términos definidos en el Acuerdo HQS Energy.</span></div>
         </div>
-        <div>
-          <div class="bar-label"><span>Producción estimada</span><span>15,587 kWh</span></div>
-          <div class="bar"><span style="--w: 100%"></span></div>
-        </div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="pasos" class="soft">
     <div class="container">
-      <h2 class="section-title">¿Cómo funciona el programa?</h2>
-      <p class="section-copy">
-        HQS Energy diseña, instala y administra la solución energética propuesta para tu propiedad. La energía producida será suministrada conforme a los términos establecidos en el Acuerdo de Compra de Energía de HQS Energy.
-      </p>
+      <h2 class="title">Próximos pasos</h2>
+      <p class="copy">Si deseas continuar, el equipo de HQS Energy validará los detalles finales y preparará la documentación correspondiente.</p>
 
-      <div class="grid">
-        <div class="card"><div class="label">Diseño</div><div class="value">Solar</div></div>
-        <div class="card"><div class="label">Instalación</div><div class="value">HQS</div></div>
-        <div class="card"><div class="label">Monitoreo</div><div class="value">Incluido</div></div>
-        <div class="card"><div class="label">Servicio</div><div class="value">Según acuerdo</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="soft">
-    <div class="container advisor">
-      <div class="avatar"></div>
-      <div>
-        <div class="eyebrow">Tu asesor energético</div>
-        <h2 class="section-title">Victor Vázquez Colón</h2>
-        <p class="section-copy">
-          HQS Energy<br>
-          Teléfono: 787-000-0000<br>
-          Email: asesor@hqsenergy.com
-        </p>
-        <a href="#" class="btn">Contactar por WhatsApp</a>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h2 class="section-title">Próximos pasos</h2>
       <div class="steps">
-        <div class="step"><strong>01</strong>Revisas tu propuesta personalizada.</div>
-        <div class="step"><strong>02</strong>Confirmas tu interés.</div>
-        <div class="step"><strong>03</strong>Validamos los detalles finales.</div>
-        <div class="step"><strong>04</strong>Presentamos el Acuerdo HQS Energy.</div>
-        <div class="step"><strong>05</strong>Comenzamos instalación.</div>
+        <div class="step"><b>01</b><strong>Revisar</strong><p>Evalúas tu propuesta personalizada.</p></div>
+        <div class="step"><b>02</b><strong>Confirmar</strong><p>Confirmas tu interés en continuar.</p></div>
+        <div class="step"><b>03</b><strong>Validar</strong><p>Se revisan los detalles finales.</p></div>
+        <div class="step"><b>04</b><strong>Acuerdo</strong><p>Se presenta el Acuerdo HQS Energy.</p></div>
+        <div class="step"><b>05</b><strong>Instalar</strong><p>Comienza el proceso residencial.</p></div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="continuar">
     <div class="container final">
-      <h2 class="section-title">Comienza tu transición energética</h2>
-      <p>Tu propuesta personalizada está lista.</p>
-      <a href="#" class="btn">Continuar con mi propuesta</a>
-      <a href="#" class="btn secondary">Solicitar información adicional</a>
+      <div class="eyebrow">HQS Energy</div>
+      <h2 class="title">Tu propuesta está lista</h2>
+      <p>Revisa los detalles y continúa con el próximo paso cuando estés listo.</p>
+
+      <div class="btns" style="justify-content:center">
+        <a class="btn" href="#">Continuar con mi propuesta</a>
+        <a class="btn secondary" href="#">Solicitar información adicional</a>
+      </div>
     </div>
   </section>
 
