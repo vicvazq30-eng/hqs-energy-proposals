@@ -46,7 +46,7 @@
 
     .hero{
       min-height:100vh;
-      padding:150px 6vw 90px;
+      padding:160px 6vw 110px;
       color:white;
       background:
         radial-gradient(circle at 85% 20%,rgba(245,166,35,.35),transparent 30%),
@@ -62,10 +62,6 @@
     .hero-grid{
       width:min(1180px,100%);
       margin:auto;
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:42px;
-      align-items:center;
     }
 
     .eyebrow{
@@ -78,13 +74,19 @@
     }
 
     h1{
-      font-size:clamp(46px,7vw,86px);
-      line-height:.94;
-      letter-spacing:-.06em;
+      font-size:clamp(64px,9vw,132px);
+      line-height:.9;
+      letter-spacing:-.07em;
       margin-bottom:28px;
+      max-width:1120px;
     }
 
-    .hero p{font-size:21px;color:rgba(255,255,255,.84);max-width:680px;margin-bottom:32px}
+    .hero p{
+      font-size:24px;
+      color:rgba(255,255,255,.84);
+      max-width:950px;
+      margin-bottom:32px;
+    }
 
     .client-box{
       display:inline-block;
@@ -97,26 +99,6 @@
 
     .client-box span{display:block;color:rgba(255,255,255,.72);font-size:14px}
     .client-box strong{display:block;font-size:30px;margin:4px 0}
-
-    .hero-card{
-      background:rgba(255,255,255,.96);
-      color:var(--ink);
-      border-radius:38px;
-      padding:34px;
-      box-shadow:0 24px 80px rgba(16,24,40,.18);
-    }
-
-    .hero-card h2{color:var(--dark);font-size:25px;margin-bottom:24px}
-
-    .metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .metric{
-      background:#F8FBFD;
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:20px;
-    }
-    .metric small{color:var(--muted)}
-    .metric strong{display:block;color:var(--dark);font-size:30px;letter-spacing:-.05em}
 
     .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
     .btn{
@@ -193,9 +175,10 @@
     }
 
     .compare-card.hqs .logo-box img{
-      width:108%;
-      height:108%;
+      width:118%;
+      height:118%;
       max-width:none;
+      object-fit:contain;
     }
 
     .price{
@@ -288,11 +271,12 @@
 
     @media(max-width:900px){
       .nav-links{display:none}
-      .hero-grid,.summary,.comparison,.savings,.program-grid,.steps{grid-template-columns:1fr}
-      .metrics{grid-template-columns:1fr}
+      .summary,.comparison,.savings,.program-grid,.steps{grid-template-columns:1fr}
       .vs{justify-self:center}
       section{padding:70px 6vw}
       .hero{padding-top:130px}
+      h1{font-size:clamp(48px,13vw,82px)}
+      .hero p{font-size:20px}
     }
   </style>
 </head>
@@ -330,16 +314,6 @@
           <a class="btn secondary" href="#comparacion">Comparar LUMA vs HQS</a>
         </div>
       </div>
-
-      <aside class="hero-card">
-        <h2>Resumen del sistema</h2>
-        <div class="metrics">
-          <div class="metric"><small>Sistema recomendado</small><strong>10.4 kW</strong></div>
-          <div class="metric"><small>Producción año 1</small><strong>15,587</strong></div>
-          <div class="metric"><small>Cobertura estimada</small><strong>110%</strong></div>
-          <div class="metric"><small>Respaldo energético</small><strong>Powerwall 3</strong></div>
-        </div>
-      </aside>
     </div>
   </header>
 
@@ -384,7 +358,7 @@
 
         <div class="compare-card hqs">
           <div class="logo-box">
-            <img src="./assets/hqs-logo-horizontal.png" alt="HQS Energy">
+            <img src="./assets/hqs-logo (2).png" alt="HQS Energy">
           </div>
 
           <div class="eyebrow">Programa propuesto</div>
