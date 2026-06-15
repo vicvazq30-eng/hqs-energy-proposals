@@ -304,14 +304,16 @@
         <p>Una solución residencial preparada por HQS Energy para ayudarte a reducir dependencia de la red y obtener mayor estabilidad energética.</p>
 
         <div class="client-box">
-          <span>Preparada exclusivamente para</span>
-          <strong>Natalie Torres</strong>
-          <span>Juncos, Puerto Rico · 12 de junio de 2026</span>
+          <span>Propuesta personalizada para</span>
+          <strong data-field="cliente" style="font-size:58px;line-height:1.05;display:block;">Natalie Torres</strong>
+          <div style="font-size:20px;font-weight:600;color:rgba(255,255,255,.85);margin-top:8px;">
+            <span data-field="pueblo">Juncos, Puerto Rico</span> • <span data-field="fecha">12 de junio de 2026</span>
+          </div>
         </div>
 
         <div class="btns">
           <a class="btn" href="#resumen">Ver propuesta</a>
-          <a class="btn secondary" href="#comparacion">Comparar LUMA vs HQS</a>
+          
         </div>
       </div>
     </div>
@@ -323,10 +325,10 @@
       <p class="copy">Esta propuesta presenta el consumo actual de la propiedad, la producción estimada y la solución recomendada por HQS Energy.</p>
 
       <div class="summary">
-        <div class="summary-card"><small>Consumo anual</small><strong>14,170 kWh</strong></div>
-        <div class="summary-card"><small>Factura promedio</small><strong>$285/mes</strong></div>
-        <div class="summary-card"><small>Sistema recomendado</small><strong>10.4 kW</strong></div>
-        <div class="summary-card"><small>Cobertura estimada</small><strong>110%</strong></div>
+        <div class="summary-card"><small>Consumo anual</small><strong><span data-field="consumo">14,170</span> kWh</strong></div>
+        <div class="summary-card"><small>Factura promedio</small><strong>$<span data-field="factura">285</span>/mes</strong></div>
+        <div class="summary-card"><small>Sistema recomendado</small><strong><span data-field="sistema">10.4</span> kW</strong></div>
+        <div class="summary-card"><small>Cobertura estimada</small><strong><span data-field="offset">110</span>%</strong></div>
       </div>
     </div>
   </section>
@@ -343,12 +345,12 @@
           </div>
 
           <div class="eyebrow">Situación actual</div>
-          <div class="price">$285</div>
+          <div class="price">$<span data-field="factura">285</span></div>
           <p class="muted">Pago promedio mensual estimado</p>
 
           <div class="compare-list">
-            <div><span>Proveedor</span><strong>LUMA Energy</strong></div>
-            <div><span>Consumo anual</span><strong>14,170 kWh</strong></div>
+            <div><span>Proveedor</span><strong data-field="utility">LUMA Energy</strong></div>
+            <div><span>Consumo anual</span><strong><span data-field="consumo">14,170</span> kWh</strong></div>
             <div><span>Respaldo energético</span><strong>No incluido</strong></div>
             <div><span>Exposición a aumentos</span><strong>Alta</strong></div>
           </div>
@@ -362,22 +364,22 @@
           </div>
 
           <div class="eyebrow">Programa propuesto</div>
-          <div class="price">$210</div>
+          <div class="price">$<span data-field="pago">210</span></div>
           <p class="muted">Pago mensual proyectado</p>
 
           <div class="compare-list">
             <div><span>Proveedor</span><strong>HQS Energy</strong></div>
-            <div><span>Producción año 1</span><strong>15,587 kWh</strong></div>
-            <div><span>Respaldo energético</span><strong>Powerwall 3</strong></div>
+            <div><span>Producción año 1</span><strong><span data-field="produccion">15,587</span> kWh</strong></div>
+            <div><span>Respaldo energético</span><strong data-field="bateria">Powerwall 3</strong></div>
             <div><span>Estabilidad energética</span><strong>Mayor</strong></div>
           </div>
         </div>
       </div>
 
       <div class="savings">
-        <div><span>Ahorro mensual estimado</span><strong>$75</strong></div>
-        <div><span>Ahorro anual estimado</span><strong>$900</strong></div>
-        <div><span>Término del acuerdo</span><strong>25 años</strong></div>
+        <div><span>Ahorro mensual estimado</span><strong>$<span data-field="ahorro">75</span></strong></div>
+        <div><span>Ahorro anual estimado</span><strong>$<span data-field="ahorro_anual">900</span></strong></div>
+        <div><span>Término del acuerdo</span><strong><span data-field="termino">25</span> años</strong></div>
       </div>
     </div>
   </section>
@@ -421,11 +423,78 @@
       <p>Revisa los detalles y continúa con el próximo paso cuando estés listo.</p>
 
       <div class="btns" style="justify-content:center">
-        <a class="btn" href="#">Continuar con mi propuesta</a>
+        <a class="btn" href="#" id="continueBtn">Continuar con mi propuesta</a>
         <a class="btn secondary" href="#">Solicitar información adicional</a>
       </div>
     </div>
   </section>
 
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const aliases = {
+      cliente: ["cliente", "nombre", "name"],
+      pueblo: ["pueblo", "ciudad", "city"],
+      fecha: ["fecha", "date"],
+      consumo: ["consumo", "annual_consumption", "kwh", "consumo_anual"],
+      factura: ["factura", "bill", "current_monthly", "pago_actual"],
+      sistema: ["sistema", "system_size", "kw"],
+      offset: ["offset", "cobertura"],
+      produccion: ["produccion", "production", "year1production", "produccion_anual"],
+      pago: ["pago", "new_monthly", "monthly_payment", "pago_solar"],
+      ahorro: ["ahorro", "monthly_savings", "ahorro_mensual"],
+      ahorro_anual: ["ahorro_anual", "annual_savings"],
+      bateria: ["bateria", "battery"],
+      termino: ["termino", "term"],
+      utility: ["utility", "proveedor"]
+    };
+
+    function getValue(field){
+      const keys = aliases[field] || [field];
+      for (const key of keys){
+        const value = params.get(key);
+        if(value !== null && value.trim() !== "") return value.trim();
+      }
+      return null;
+    }
+
+    function formatNumber(value){
+      if(value === null) return null;
+      const clean = value.replace(/,/g, "");
+      const num = Number(clean);
+      if(Number.isNaN(num)) return value;
+      return num.toLocaleString("en-US", {maximumFractionDigits: 2});
+    }
+
+    document.querySelectorAll("[data-field]").forEach(el => {
+      const field = el.getAttribute("data-field");
+      let value = getValue(field);
+
+      if(value !== null){
+        if(["consumo","produccion","factura","pago","ahorro","ahorro_anual","sistema","offset","termino"].includes(field)){
+          value = formatNumber(value);
+        }
+        el.textContent = value;
+      }
+    });
+
+    const ahorro = getValue("ahorro");
+    const ahorroAnual = getValue("ahorro_anual");
+
+    if(ahorro && !ahorroAnual){
+      const yearly = Number(ahorro.replace(/,/g, "")) * 12;
+      if(!Number.isNaN(yearly)){
+        document.querySelectorAll('[data-field="ahorro_anual"]').forEach(el => {
+          el.textContent = yearly.toLocaleString("en-US", {maximumFractionDigits: 0});
+        });
+      }
+    }
+
+    const whatsapp = params.get("whatsapp");
+    if(whatsapp){
+      const btn = document.getElementById("continueBtn");
+      btn.href = "https://wa.me/" + whatsapp.replace(/\D/g, "");
+    }
+  </script>
 </body>
 </html>
