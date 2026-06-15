@@ -14,11 +14,17 @@
       --ink:#101828;
       --muted:#667085;
       --line:#E6EDF3;
+      --white:#ffffff;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:white;line-height:1.5}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      background:#fff;
+      line-height:1.5;
+    }
     img{max-width:100%;display:block}
     a{text-decoration:none;color:inherit}
 
@@ -28,10 +34,10 @@
       left:50%;
       transform:translateX(-50%);
       width:min(1120px,calc(100% - 32px));
-      z-index:10;
+      z-index:20;
       background:rgba(255,255,255,.92);
       backdrop-filter:blur(18px);
-      border:1px solid rgba(255,255,255,.7);
+      border:1px solid rgba(255,255,255,.75);
       border-radius:999px;
       display:flex;
       justify-content:space-between;
@@ -40,28 +46,59 @@
       box-shadow:0 18px 50px rgba(16,24,40,.12);
     }
 
-    .brand{font-weight:900;color:var(--dark)}
-    .nav-links{display:flex;gap:22px;font-size:14px;color:var(--muted);align-items:center}
-    .nav-btn{background:linear-gradient(135deg,var(--blue),var(--gold));color:white;padding:11px 18px;border-radius:999px;font-weight:900}
+    .brand{
+      font-weight:900;
+      color:var(--dark);
+      letter-spacing:-.02em;
+    }
 
-    .hero{
-      min-height:100vh;
-      padding:160px 6vw 110px;
-      color:white;
-      background:
-        radial-gradient(circle at 85% 20%,rgba(245,166,35,.35),transparent 30%),
-        radial-gradient(circle at 15% 80%,rgba(53,174,226,.35),transparent 35%),
-        linear-gradient(120deg,rgba(14,42,71,.96),rgba(14,42,71,.65)),
-        url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2200&q=80");
-      background-size:cover;
-      background-position:center;
+    .nav-links{
       display:flex;
+      gap:22px;
+      font-size:14px;
+      color:var(--muted);
       align-items:center;
     }
 
-    .hero-grid{
+    .nav-btn{
+      background:linear-gradient(135deg,var(--blue),var(--gold));
+      color:white;
+      padding:11px 18px;
+      border-radius:999px;
+      font-weight:900;
+    }
+
+    .hero{
+      min-height:100vh;
+      padding:150px 6vw 90px;
+      color:white;
+      display:flex;
+      align-items:center;
+      background:
+        linear-gradient(115deg,rgba(7,31,56,.95),rgba(14,42,71,.62)),
+        url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2200&q=80");
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      right:-12%;
+      bottom:-20%;
+      width:520px;
+      height:520px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(245,166,35,.38),transparent 68%);
+    }
+
+    .hero-inner{
       width:min(1180px,100%);
       margin:auto;
+      position:relative;
+      z-index:2;
     }
 
     .eyebrow{
@@ -74,31 +111,49 @@
     }
 
     h1{
-      font-size:clamp(64px,9vw,132px);
+      font-size:clamp(58px,9vw,130px);
       line-height:.9;
       letter-spacing:-.07em;
-      margin-bottom:28px;
       max-width:1120px;
+      margin-bottom:28px;
     }
 
-    .hero p{
+    .hero-copy{
       font-size:24px;
       color:rgba(255,255,255,.84);
-      max-width:950px;
-      margin-bottom:32px;
+      max-width:900px;
+      margin-bottom:34px;
     }
 
-    .client-box{
+    .client-card{
       display:inline-block;
       background:rgba(255,255,255,.13);
       border:1px solid rgba(255,255,255,.25);
       backdrop-filter:blur(14px);
-      border-radius:30px;
-      padding:26px;
+      border-radius:32px;
+      padding:28px 32px;
     }
 
-    .client-box span{display:block;color:rgba(255,255,255,.72);font-size:14px}
-    .client-box strong{display:block;font-size:30px;margin:4px 0}
+    .client-card span{
+      display:block;
+      color:rgba(255,255,255,.72);
+      font-size:15px;
+    }
+
+    .client-name{
+      display:block;
+      font-size:clamp(42px,6vw,72px);
+      line-height:1;
+      font-weight:950;
+      letter-spacing:-.05em;
+      margin:8px 0;
+    }
+
+    .client-meta{
+      font-size:21px;
+      font-weight:700;
+      color:rgba(255,255,255,.88)!important;
+    }
 
     .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
     .btn{
@@ -108,20 +163,80 @@
       background:linear-gradient(135deg,var(--blue),var(--gold));
       color:white;
       font-weight:900;
+      box-shadow:0 18px 45px rgba(53,174,226,.22);
     }
-    .btn.secondary{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3)}
 
-    section{padding:90px 6vw}
+    section{padding:92px 6vw}
     .container{max-width:1180px;margin:auto}
     .soft{background:var(--soft)}
-    .title{font-size:clamp(34px,5vw,60px);line-height:.98;letter-spacing:-.055em;color:var(--dark);margin-bottom:18px}
-    .copy{font-size:19px;color:var(--muted);max-width:720px;margin-bottom:42px}
+
+    .section-title{
+      font-size:clamp(36px,5vw,64px);
+      line-height:.98;
+      letter-spacing:-.055em;
+      color:var(--dark);
+      margin-bottom:20px;
+    }
+
+    .section-copy{
+      max-width:780px;
+      font-size:20px;
+      color:var(--muted);
+      margin-bottom:44px;
+    }
+
+    .story-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .story-card{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:36px;
+      padding:38px;
+      box-shadow:0 20px 65px rgba(16,24,40,.07);
+    }
+
+    .story-card.dark{
+      color:white;
+      background:
+        radial-gradient(circle at 80% 18%,rgba(245,166,35,.28),transparent 30%),
+        linear-gradient(145deg,#071F38,#0F4774);
+      border:none;
+    }
+
+    .story-card h3{
+      font-size:34px;
+      line-height:1.05;
+      letter-spacing:-.04em;
+      margin-bottom:18px;
+      color:var(--dark);
+    }
+
+    .story-card.dark h3{color:white}
+    .story-card p{color:var(--muted);font-size:19px}
+    .story-card.dark p{color:rgba(255,255,255,.78)}
+
+    .big-number{
+      font-size:clamp(54px,7vw,96px);
+      font-weight:950;
+      letter-spacing:-.075em;
+      line-height:.9;
+      color:var(--dark);
+      margin:22px 0 10px;
+    }
+
+    .dark .big-number{color:white}
 
     .summary{
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:18px;
     }
+
     .summary-card{
       background:white;
       border:1px solid var(--line);
@@ -129,8 +244,15 @@
       padding:28px;
       box-shadow:0 18px 55px rgba(16,24,40,.06);
     }
+
     .summary-card small{color:var(--muted)}
-    .summary-card strong{display:block;color:var(--dark);font-size:35px;letter-spacing:-.05em;margin-top:12px}
+    .summary-card strong{
+      display:block;
+      color:var(--dark);
+      font-size:35px;
+      letter-spacing:-.05em;
+      margin-top:12px;
+    }
 
     .comparison{
       display:grid;
@@ -197,6 +319,7 @@
       display:grid;
       gap:14px;
     }
+
     .compare-list div{
       display:flex;
       justify-content:space-between;
@@ -204,6 +327,7 @@
       border-top:1px solid rgba(102,112,133,.18);
       padding-top:14px;
     }
+
     .hqs .compare-list div{border-top-color:rgba(255,255,255,.18)}
 
     .vs{
@@ -230,7 +354,31 @@
       border-radius:30px;
       padding:26px;
     }
-    .savings strong{display:block;font-size:32px;color:var(--dark);letter-spacing:-.05em}
+
+    .savings strong{
+      display:block;
+      font-size:32px;
+      color:var(--dark);
+      letter-spacing:-.05em;
+    }
+
+    .system-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .visual-card{
+      min-height:520px;
+      border-radius:42px;
+      background:
+        linear-gradient(180deg,rgba(14,42,71,.10),rgba(14,42,71,.10)),
+        url("https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1500&q=80");
+      background-size:cover;
+      background-position:center;
+      box-shadow:0 26px 80px rgba(16,24,40,.16);
+    }
 
     .program{
       background:white;
@@ -240,11 +388,33 @@
       box-shadow:0 24px 80px rgba(16,24,40,.12);
     }
 
-    .program-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:30px}
-    .program-item{background:#F8FBFD;border:1px solid var(--line);border-radius:24px;padding:22px}
-    .program-item strong{display:block;color:var(--dark);font-size:20px;margin-bottom:6px}
+    .program-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+      margin-top:30px;
+    }
 
-    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+    .program-item{
+      background:#F8FBFD;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+    }
+
+    .program-item strong{
+      display:block;
+      color:var(--dark);
+      font-size:20px;
+      margin-bottom:6px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:16px;
+    }
+
     .step{
       background:white;
       border:1px solid var(--line);
@@ -252,8 +422,21 @@
       padding:24px;
       box-shadow:0 16px 50px rgba(16,24,40,.06);
     }
-    .step b{display:block;color:var(--gold);font-size:28px;margin-bottom:14px}
-    .step strong{display:block;color:var(--dark);font-size:20px;margin-bottom:8px}
+
+    .step b{
+      display:block;
+      color:var(--gold);
+      font-size:28px;
+      margin-bottom:14px;
+    }
+
+    .step strong{
+      display:block;
+      color:var(--dark);
+      font-size:20px;
+      margin-bottom:8px;
+    }
+
     .step p{color:var(--muted);font-size:15px}
 
     .final{
@@ -266,17 +449,19 @@
         radial-gradient(circle at 84% 76%,rgba(245,166,35,.38),transparent 30%),
         linear-gradient(135deg,#071F38,#0E2A47);
     }
-    .final .title{color:white}
+
+    .final .section-title{color:white}
     .final p{color:rgba(255,255,255,.74);font-size:20px}
 
     @media(max-width:900px){
       .nav-links{display:none}
-      .summary,.comparison,.savings,.program-grid,.steps{grid-template-columns:1fr}
+      .story-grid,.summary,.comparison,.savings,.system-grid,.program-grid,.steps{grid-template-columns:1fr}
       .vs{justify-self:center}
       section{padding:70px 6vw}
       .hero{padding-top:130px}
       h1{font-size:clamp(48px,13vw,82px)}
-      .hero p{font-size:20px}
+      .hero-copy{font-size:20px}
+      .client-name{font-size:42px}
     }
   </style>
 </head>
@@ -284,59 +469,106 @@
 <body>
 
   <nav class="nav">
-    <div class="brand">
-      <span>HQS Energy</span>
-    </div>
+    <div class="brand">HQS Energy</div>
     <div class="nav-links">
-      <a href="#resumen">Resumen</a>
+      <a href="#historia">Historia</a>
+      <a href="#luma">LUMA</a>
       <a href="#comparacion">Comparación</a>
-      <a href="#programa">Programa</a>
       <a href="#pasos">Pasos</a>
       <a class="nav-btn" href="#continuar">Continuar</a>
     </div>
   </nav>
 
   <header class="hero">
-    <div class="hero-grid">
-      <div>
-        <div class="eyebrow">Propuesta residencial personalizada</div>
-        <h1>Propuesta Energética Personalizada</h1>
-        <p>Una solución residencial preparada por HQS Energy para ayudarte a reducir dependencia de la red y obtener mayor estabilidad energética.</p>
+    <div class="hero-inner">
+      <div class="eyebrow">Propuesta residencial personalizada</div>
+      <h1>Hola, <span data-field="cliente">Natalie</span>.</h1>
+      <p class="hero-copy">
+        Preparamos esta propuesta para tu residencia en <span data-field="pueblo">Juncos, Puerto Rico</span>,
+        tomando en cuenta tu consumo actual, tu factura promedio y la oportunidad de estabilizar tu energía con HQS Energy.
+      </p>
 
-        <div class="client-box">
-          <span>Propuesta personalizada para</span>
-          <strong data-field="cliente" style="font-size:58px;line-height:1.05;display:block;">Natalie Torres</strong>
-          <div style="font-size:20px;font-weight:600;color:rgba(255,255,255,.85);margin-top:8px;">
-            <span data-field="pueblo">Juncos, Puerto Rico</span> • <span data-field="fecha">12 de junio de 2026</span>
-          </div>
-        </div>
+      <div class="client-card">
+        <span>Propuesta personalizada para</span>
+        <strong class="client-name" data-field="cliente_completo">Natalie Torres</strong>
+        <span class="client-meta">
+          <span data-field="pueblo">Juncos, Puerto Rico</span> • <span data-field="fecha">12 de junio de 2026</span>
+        </span>
+      </div>
 
-        <div class="btns">
-          <a class="btn" href="#resumen">Ver propuesta</a>
-          
-        </div>
+      <div class="btns">
+        <a class="btn" href="#historia">Ver propuesta</a>
       </div>
     </div>
   </header>
 
-  <section id="resumen">
+  <section id="historia">
     <div class="container">
-      <h2 class="title">Resumen de tu propuesta</h2>
-      <p class="copy">Esta propuesta presenta el consumo actual de la propiedad, la producción estimada y la solución recomendada por HQS Energy.</p>
+      <h2 class="section-title">Por qué preparamos esta propuesta</h2>
+      <p class="section-copy">
+        Esta página resume una solución energética diseñada para tu hogar. La meta es mostrarte, de forma clara,
+        cómo se compara tu situación actual con una alternativa administrada por HQS Energy.
+      </p>
+
+      <div class="story-grid">
+        <div class="story-card">
+          <h3>Tu consumo energético actual</h3>
+          <p>Actualmente tu residencia consume aproximadamente:</p>
+          <div class="big-number"><span data-field="consumo">14,170</span></div>
+          <p>kWh al año, según la información evaluada para esta propuesta.</p>
+        </div>
+
+        <div class="story-card dark">
+          <h3>La oportunidad</h3>
+          <p>Con una solución solar residencial, tu hogar puede producir energía localmente y reducir exposición a cambios en la red eléctrica tradicional.</p>
+          <div class="big-number"><span data-field="offset">110</span>%</div>
+          <p>Cobertura energética estimada para el primer año.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="luma" class="soft">
+    <div class="container">
+      <h2 class="section-title">Tu situación actual con LUMA</h2>
+      <p class="section-copy">
+        Hoy tu energía depende principalmente de la red eléctrica. Esta propuesta compara ese escenario con el programa residencial de HQS Energy.
+      </p>
 
       <div class="summary">
-        <div class="summary-card"><small>Consumo anual</small><strong><span data-field="consumo">14,170</span> kWh</strong></div>
+        <div class="summary-card"><small>Proveedor actual</small><strong data-field="utility">LUMA Energy</strong></div>
         <div class="summary-card"><small>Factura promedio</small><strong>$<span data-field="factura">285</span>/mes</strong></div>
-        <div class="summary-card"><small>Sistema recomendado</small><strong><span data-field="sistema">10.4</span> kW</strong></div>
-        <div class="summary-card"><small>Cobertura estimada</small><strong><span data-field="offset">110</span>%</strong></div>
+        <div class="summary-card"><small>Consumo anual</small><strong><span data-field="consumo">14,170</span> kWh</strong></div>
+        <div class="summary-card"><small>Exposición a aumentos</small><strong>Alta</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="solucion">
+    <div class="container system-grid">
+      <div class="visual-card"></div>
+
+      <div>
+        <div class="eyebrow">Solución HQS Energy</div>
+        <h2 class="section-title">Una propuesta diseñada para tu residencia</h2>
+        <p class="section-copy">
+          La solución recomendada combina producción solar, respaldo energético y administración bajo el programa de HQS Energy.
+        </p>
+
+        <div class="summary" style="grid-template-columns:1fr 1fr;">
+          <div class="summary-card"><small>Sistema recomendado</small><strong><span data-field="sistema">10.4</span> kW</strong></div>
+          <div class="summary-card"><small>Producción año 1</small><strong><span data-field="produccion">15,587</span></strong></div>
+          <div class="summary-card"><small>Cobertura estimada</small><strong><span data-field="offset">110</span>%</strong></div>
+          <div class="summary-card"><small>Respaldo</small><strong data-field="bateria">Powerwall 3</strong></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="comparacion" class="soft">
     <div class="container">
-      <h2 class="title">LUMA vs HQS Energy</h2>
-      <p class="copy">Una comparación clara entre tu escenario actual y el programa residencial propuesto por HQS Energy.</p>
+      <h2 class="section-title">LUMA vs HQS Energy</h2>
+      <p class="section-copy">Una comparación visual entre tu escenario actual y el pago mensual proyectado con HQS Energy.</p>
 
       <div class="comparison">
         <div class="compare-card">
@@ -388,8 +620,11 @@
     <div class="container">
       <div class="program">
         <div class="eyebrow">Programa HQS Energy</div>
-        <h2 class="title">¿Cómo funciona?</h2>
-        <p class="copy">HQS Energy diseña, instala y administra la solución energética propuesta para tu residencia. La energía producida será suministrada conforme a los términos establecidos en el Acuerdo de Compra de Energía de HQS Energy.</p>
+        <h2 class="section-title">Cómo funciona</h2>
+        <p class="section-copy">
+          HQS Energy diseña, instala y administra la solución energética propuesta para tu residencia.
+          La energía producida será suministrada conforme a los términos establecidos en el Acuerdo de Compra de Energía de HQS Energy.
+        </p>
 
         <div class="program-grid">
           <div class="program-item"><strong>Diseño energético</strong><span>Evaluación de consumo, propiedad y sistema recomendado.</span></div>
@@ -403,8 +638,8 @@
 
   <section id="pasos" class="soft">
     <div class="container">
-      <h2 class="title">Próximos pasos</h2>
-      <p class="copy">Si deseas continuar, el equipo de HQS Energy validará los detalles finales y preparará la documentación correspondiente.</p>
+      <h2 class="section-title">Próximos pasos</h2>
+      <p class="section-copy">Si deseas continuar, el equipo de HQS Energy validará los detalles finales y preparará la documentación correspondiente.</p>
 
       <div class="steps">
         <div class="step"><b>01</b><strong>Revisar</strong><p>Evalúas tu propuesta personalizada.</p></div>
@@ -419,12 +654,11 @@
   <section id="continuar">
     <div class="container final">
       <div class="eyebrow">HQS Energy</div>
-      <h2 class="title">Tu propuesta está lista</h2>
+      <h2 class="section-title">Tu propuesta está lista</h2>
       <p>Revisa los detalles y continúa con el próximo paso cuando estés listo.</p>
 
       <div class="btns" style="justify-content:center">
         <a class="btn" href="#" id="continueBtn">Continuar con mi propuesta</a>
-        <a class="btn secondary" href="#">Solicitar información adicional</a>
       </div>
     </div>
   </section>
@@ -434,6 +668,7 @@
 
     const aliases = {
       cliente: ["cliente", "nombre", "name"],
+      cliente_completo: ["cliente_completo", "cliente", "nombre", "name"],
       pueblo: ["pueblo", "ciudad", "city"],
       fecha: ["fecha", "date"],
       consumo: ["consumo", "annual_consumption", "kwh", "consumo_anual"],
@@ -496,5 +731,6 @@
       btn.href = "https://wa.me/" + whatsapp.replace(/\D/g, "");
     }
   </script>
+
 </body>
 </html>
