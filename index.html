@@ -664,72 +664,109 @@
   </section>
 
   <script>
+    const SUPABASE_URL = "https://mbbpvsfwckaavhimieyj.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_y4_4jCvCEmaYNQ7oKsgAug_bpEonhHn";
+
     const params = new URLSearchParams(window.location.search);
-
-    const aliases = {
-      cliente: ["cliente", "nombre", "name"],
-      cliente_completo: ["cliente_completo", "cliente", "nombre", "name"],
-      pueblo: ["pueblo", "ciudad", "city"],
-      fecha: ["fecha", "date"],
-      consumo: ["consumo", "annual_consumption", "kwh", "consumo_anual"],
-      factura: ["factura", "bill", "current_monthly", "pago_actual"],
-      sistema: ["sistema", "system_size", "kw"],
-      offset: ["offset", "cobertura"],
-      produccion: ["produccion", "production", "year1production", "produccion_anual"],
-      pago: ["pago", "new_monthly", "monthly_payment", "pago_solar"],
-      ahorro: ["ahorro", "monthly_savings", "ahorro_mensual"],
-      ahorro_anual: ["ahorro_anual", "annual_savings"],
-      bateria: ["bateria", "battery"],
-      termino: ["termino", "term"],
-      utility: ["utility", "proveedor"]
-    };
-
-    function getValue(field){
-      const keys = aliases[field] || [field];
-      for (const key of keys){
-        const value = params.get(key);
-        if(value !== null && value.trim() !== "") return value.trim();
-      }
-      return null;
-    }
+    const proposalId = params.get("id");
 
     function formatNumber(value){
-      if(value === null) return null;
-      const clean = value.replace(/,/g, "");
-      const num = Number(clean);
+      if(value === null || value === undefined || value === "") return "";
+      const num = Number(String(value).replace(/,/g, ""));
       if(Number.isNaN(num)) return value;
-      return num.toLocaleString("en-US", {maximumFractionDigits: 2});
+      return num.toLocaleString("en-US", { maximumFractionDigits: 2 });
     }
 
-    document.querySelectorAll("[data-field]").forEach(el => {
-      const field = el.getAttribute("data-field");
-      let value = getValue(field);
+    function firstName(fullName){
+      if(!fullName) return "";
+      return String(fullName).trim().split(" ")[0];
+    }
 
-      if(value !== null){
-        if(["consumo","produccion","factura","pago","ahorro","ahorro_anual","sistema","offset","termino"].includes(field)){
-          value = formatNumber(value);
-        }
+    function setField(field, value){
+      if(value === null || value === undefined || value === "") return;
+      document.querySelectorAll(`[data-field="${field}"]`).forEach(el => {
         el.textContent = value;
+      });
+    }
+
+    function setProposal(data){
+      const ahorroAnual = data.ahorro ? Number(data.ahorro) * 12 : "";
+
+      setField("cliente", firstName(data.cliente) || data.cliente);
+      setField("cliente_completo", data.cliente);
+      setField("pueblo", data.pueblo);
+      setField("fecha", data.fecha);
+      setField("consumo", formatNumber(data.consumo));
+      setField("factura", formatNumber(data.factura));
+      setField("sistema", formatNumber(data.sistema));
+      setField("produccion", formatNumber(data.produccion));
+      setField("offset", formatNumber(data.offset));
+      setField("pago", formatNumber(data.pago));
+      setField("ahorro", formatNumber(data.ahorro));
+      setField("ahorro_anual", formatNumber(ahorroAnual));
+      setField("bateria", data.bateria || "Powerwall 3");
+      setField("utility", data.utility || "LUMA Energy");
+      setField("termino", "25");
+
+      const imageUrl = data.imagen_aerea_url || data.foto_propiedad_url;
+      if(imageUrl){
+        const visual = document.querySelector(".visual-card");
+        if(visual){
+          visual.style.background = `
+            linear-gradient(180deg,rgba(14,42,71,.10),rgba(14,42,71,.10)),
+            url("${imageUrl}")
+          `;
+          visual.style.backgroundSize = "cover";
+          visual.style.backgroundPosition = "center";
+        }
       }
-    });
 
-    const ahorro = getValue("ahorro");
-    const ahorroAnual = getValue("ahorro_anual");
+      const whatsapp = params.get("whatsapp");
+      if(whatsapp){
+        const btn = document.getElementById("continueBtn");
+        if(btn) btn.href = "https://wa.me/" + whatsapp.replace(/\D/g, "");
+      }
+    }
 
-    if(ahorro && !ahorroAnual){
-      const yearly = Number(ahorro.replace(/,/g, "")) * 12;
-      if(!Number.isNaN(yearly)){
-        document.querySelectorAll('[data-field="ahorro_anual"]').forEach(el => {
-          el.textContent = yearly.toLocaleString("en-US", {maximumFractionDigits: 0});
+    async function loadProposal(){
+      if(!proposalId){
+        console.warn("No proposal id provided. Use ?id=1");
+        return;
+      }
+
+      try{
+        const url = `${SUPABASE_URL}/rest/v1/proposals?id=eq.${encodeURIComponent(proposalId)}&select=*`;
+
+        const response = await fetch(url, {
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+            "Content-Type": "application/json"
+          }
         });
+
+        if(!response.ok){
+          const errorText = await response.text();
+          console.error("Supabase error:", errorText);
+          alert("No se pudo cargar la propuesta. Revisa que la tabla tenga permiso de lectura.");
+          return;
+        }
+
+        const rows = await response.json();
+
+        if(!rows || rows.length === 0){
+          alert("No se encontró una propuesta con ese ID.");
+          return;
+        }
+
+        setProposal(rows[0]);
+      }catch(error){
+        console.error("Error cargando propuesta:", error);
+        alert("Error cargando la propuesta.");
       }
     }
 
-    const whatsapp = params.get("whatsapp");
-    if(whatsapp){
-      const btn = document.getElementById("continueBtn");
-      btn.href = "https://wa.me/" + whatsapp.replace(/\D/g, "");
-    }
+    loadProposal();
   </script>
 
 </body>
