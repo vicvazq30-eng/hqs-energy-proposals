@@ -453,15 +453,313 @@
     .final .section-title{color:white}
     .final p{color:rgba(255,255,255,.74);font-size:20px}
 
+
+    .photo-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:stretch;
+      margin-top:34px;
+    }
+
+    .photo-card{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:36px;
+      overflow:hidden;
+      box-shadow:0 24px 70px rgba(16,24,40,.10);
+    }
+
+    .photo-card.large{
+      min-height:520px;
+    }
+
+    .photo-card img{
+      width:100%;
+      height:100%;
+      min-height:320px;
+      object-fit:cover;
+    }
+
+    .photo-card.large img{
+      min-height:520px;
+    }
+
+    .photo-caption{
+      padding:22px 24px;
+      border-top:1px solid var(--line);
+      background:white;
+    }
+
+    .photo-caption small{
+      display:block;
+      color:var(--gold);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:12px;
+      margin-bottom:6px;
+    }
+
+    .photo-caption strong{
+      display:block;
+      color:var(--dark);
+      font-size:22px;
+      letter-spacing:-.03em;
+    }
+
+    .stack{
+      display:grid;
+      gap:24px;
+    }
+
+    .advisor-card{
+      display:grid;
+      grid-template-columns:240px 1fr;
+      gap:28px;
+      align-items:center;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:38px;
+      padding:30px;
+      box-shadow:0 24px 80px rgba(16,24,40,.10);
+      margin-top:34px;
+    }
+
+    .advisor-photo{
+      width:240px;
+      height:240px;
+      border-radius:32px;
+      overflow:hidden;
+      background:#EAF2F8;
+    }
+
+    .advisor-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .advisor-info h3{
+      font-size:clamp(34px,4vw,54px);
+      line-height:1;
+      letter-spacing:-.055em;
+      color:var(--dark);
+      margin-bottom:14px;
+    }
+
+    .advisor-info p{
+      color:var(--muted);
+      font-size:19px;
+      margin-bottom:18px;
+      max-width:620px;
+    }
+
+    .advisor-meta{
+      display:grid;
+      gap:10px;
+      color:var(--dark);
+      font-weight:800;
+    }
+
+    .is-hidden{
+      display:none!important;
+    }
+
+
+    .hqs-brand-section{
+      background:
+        radial-gradient(circle at 18% 20%,rgba(53,174,226,.14),transparent 28%),
+        radial-gradient(circle at 84% 76%,rgba(245,166,35,.18),transparent 30%),
+        linear-gradient(135deg,#071F38,#0E2A47);
+      color:white;
+    }
+
+    .hqs-brand-section .section-title{color:white}
+    .hqs-brand-section .section-copy{color:rgba(255,255,255,.78)}
+
+    .hqs-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .hqs-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:38px;
+      padding:36px;
+      backdrop-filter:blur(12px);
+    }
+
+    .hqs-card h3{
+      font-size:34px;
+      line-height:1.05;
+      letter-spacing:-.045em;
+      margin-bottom:18px;
+    }
+
+    .hqs-card p{
+      color:rgba(255,255,255,.78);
+      font-size:19px;
+      margin-bottom:18px;
+    }
+
+    .hqs-points{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:26px;
+    }
+
+    .hqs-point{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:26px;
+      padding:22px;
+    }
+
+    .hqs-point strong{
+      display:block;
+      color:white;
+      font-size:19px;
+      margin-bottom:8px;
+    }
+
+    .hqs-point span{
+      color:rgba(255,255,255,.72);
+      font-size:15px;
+    }
+
+    .contact-list{
+      display:grid;
+      gap:14px;
+      margin-top:20px;
+    }
+
+    .contact-item{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      border-top:1px solid rgba(255,255,255,.14);
+      padding-top:14px;
+      color:rgba(255,255,255,.78);
+    }
+
+    .contact-item strong{
+      color:white;
+      text-align:right;
+    }
+
+
+
+    .closing-cta{
+      background:
+        radial-gradient(circle at 16% 24%,rgba(53,174,226,.16),transparent 30%),
+        radial-gradient(circle at 86% 72%,rgba(245,166,35,.18),transparent 30%),
+        linear-gradient(135deg,#F8FBFD,#FFFFFF);
+    }
+
+    .closing-panel{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:46px;
+      padding:44px;
+      box-shadow:0 26px 85px rgba(16,24,40,.10);
+      display:grid;
+      grid-template-columns:1fr .85fr;
+      gap:30px;
+      align-items:center;
+    }
+
+    .closing-panel h2{
+      font-size:clamp(38px,5vw,68px);
+      line-height:.95;
+      letter-spacing:-.06em;
+      color:var(--dark);
+      margin-bottom:18px;
+    }
+
+    .closing-panel p{
+      color:var(--muted);
+      font-size:20px;
+      max-width:720px;
+    }
+
+    .closing-panel.single{
+      grid-template-columns:1fr;
+      text-align:left;
+    }
+
+    .closing-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:28px;
+    }
+
+    .closing-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:15px 22px;
+      border-radius:999px;
+      font-weight:900;
+      background:linear-gradient(135deg,var(--blue),var(--gold));
+      color:white;
+      box-shadow:0 18px 45px rgba(53,174,226,.18);
+    }
+
+    .closing-btn.secondary{
+      background:white;
+      color:var(--dark);
+      border:1px solid var(--line);
+      box-shadow:none;
+    }
+
+    .closing-contact{
+      background:linear-gradient(145deg,#071F38,#0F4774);
+      color:white;
+      border-radius:34px;
+      padding:30px;
+    }
+
+    .closing-contact .mini{
+      color:var(--gold);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:12px;
+      margin-bottom:12px;
+    }
+
+    .closing-contact strong{
+      display:block;
+      font-size:32px;
+      line-height:1;
+      letter-spacing:-.045em;
+      margin-bottom:18px;
+    }
+
+    .closing-contact div{
+      color:rgba(255,255,255,.78);
+      border-top:1px solid rgba(255,255,255,.15);
+      padding-top:12px;
+      margin-top:12px;
+      font-weight:700;
+    }
+
     @media(max-width:900px){
       .nav-links{display:none}
-      .story-grid,.summary,.comparison,.savings,.system-grid,.program-grid,.steps{grid-template-columns:1fr}
+      .story-grid,.summary,.comparison,.savings,.system-grid,.program-grid,.steps,.photo-grid,.advisor-card,.hqs-grid,.hqs-points,.closing-panel{grid-template-columns:1fr}
       .vs{justify-self:center}
       section{padding:70px 6vw}
       .hero{padding-top:130px}
       h1{font-size:clamp(48px,13vw,82px)}
       .hero-copy{font-size:20px}
       .client-name{font-size:42px}
+      .advisor-photo{width:100%;height:320px}
     }
   </style>
 </head>
@@ -474,6 +772,9 @@
       <a href="#historia">Historia</a>
       <a href="#luma">LUMA</a>
       <a href="#comparacion">Comparación</a>
+      <a href="#fotos">Fotos</a>
+      <a href="#hqs">HQS</a>
+      <a href="#asesor">Asesor</a>
       <a href="#pasos">Pasos</a>
       <a class="nav-btn" href="#continuar">Continuar</a>
     </div>
@@ -504,25 +805,30 @@
 
   <section id="historia">
     <div class="container">
-      <h2 class="section-title">Por qué preparamos esta propuesta</h2>
+      <h2 class="section-title">La realidad energética de Puerto Rico</h2>
       <p class="section-copy">
-        Esta página resume una solución energética diseñada para tu hogar. La meta es mostrarte, de forma clara,
-        cómo se compara tu situación actual con una alternativa administrada por HQS Energy.
+        Durante los últimos años, las familias puertorriqueñas han enfrentado aumentos constantes en el costo de la energía,
+        interrupciones frecuentes del servicio y una creciente incertidumbre sobre el futuro de la red eléctrica.
+        <br><br>
+        Por eso preparamos esta propuesta para tu hogar.
+        <br><br>
+        Analizamos tu consumo, la información de tu propiedad y tu situación energética actual para mostrarte una alternativa
+        diseñada específicamente para ayudarte a tener mayor control, estabilidad y tranquilidad energética.
       </p>
 
       <div class="story-grid">
         <div class="story-card">
-          <h3>Tu consumo energético actual</h3>
-          <p>Actualmente tu residencia consume aproximadamente:</p>
+          <h3>Tu realidad energética actual</h3>
+          <p>Analizamos el consumo energético de tu residencia para entender cómo dependes actualmente de la red eléctrica.</p>
           <div class="big-number"><span data-field="consumo">14,170</span></div>
-          <p>kWh al año, según la información evaluada para esta propuesta.</p>
+          <p>kWh al año. Actualmente, ese consumo depende principalmente de la red eléctrica tradicional y está expuesto a cambios tarifarios, interrupciones y costos que no controlas directamente.</p>
         </div>
 
         <div class="story-card dark">
-          <h3>La oportunidad</h3>
-          <p>Con una solución solar residencial, tu hogar puede producir energía localmente y reducir exposición a cambios en la red eléctrica tradicional.</p>
+          <h3>Por qué analizamos tu propiedad</h3>
+          <p>Cada hogar es diferente. Por eso evaluamos tu consumo, ubicación y características de la propiedad para diseñar una propuesta basada en tu realidad y no en estimados genéricos.</p>
           <div class="big-number"><span data-field="offset">110</span>%</div>
-          <p>Cobertura energética estimada para el primer año.</p>
+          <p>Potencial de cobertura energética estimada para el primer año con la solución propuesta.</p>
         </div>
       </div>
     </div>
@@ -546,7 +852,7 @@
 
   <section id="solucion">
     <div class="container system-grid">
-      <div class="visual-card"></div>
+      <div class="visual-card" id="mainPropertyVisual"></div>
 
       <div>
         <div class="eyebrow">Solución HQS Energy</div>
@@ -616,6 +922,129 @@
     </div>
   </section>
 
+  <section id="fotos">
+    <div class="container">
+      <div class="eyebrow">Residencia evaluada</div>
+      <h2 class="section-title">Fotos usadas para preparar esta propuesta</h2>
+      <p class="section-copy">
+        Estas imágenes documentan la propiedad, la vista aérea y la factura de LUMA utilizada como referencia energética.
+      </p>
+
+      <div class="photo-grid">
+        <div class="photo-card large" data-image-card="imagen_aerea_url">
+          <img data-img="imagen_aerea_url" alt="Imagen aérea de la propiedad">
+          <div class="photo-caption">
+            <small>Vista aérea</small>
+            <strong>Referencia visual del techo y área disponible</strong>
+          </div>
+        </div>
+
+        <div class="stack">
+          <div class="photo-card" data-image-card="foto_propiedad_url">
+            <img data-img="foto_propiedad_url" alt="Foto de fachada o propiedad">
+            <div class="photo-caption">
+              <small>Fachada / propiedad</small>
+              <strong>Foto de la residencia evaluada</strong>
+            </div>
+          </div>
+
+          <div class="photo-card" data-image-card="factura_luma_url">
+            <img data-img="factura_luma_url" alt="Factura de LUMA">
+            <div class="photo-caption">
+              <small>Factura LUMA</small>
+              <strong>Documento usado para validar el consumo</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hqs" class="hqs-brand-section">
+    <div class="container">
+      <div class="eyebrow">Sobre HQS Energy</div>
+      <h2 class="section-title">Más que una instalación solar. Un socio energético para tu hogar.</h2>
+      <p class="section-copy">
+        HQS Energy nace con la visión de llevar soluciones solares de alta calidad a cada rincón de Puerto Rico,
+        acercando energía solar confiable a hogares y empresas con soluciones personalizadas y servicio cercano.
+      </p>
+
+      <div class="hqs-grid">
+        <div class="hqs-card">
+          <h3>Energía solar inteligente para hogares y negocios.</h3>
+          <p>
+            En HQS Energy ayudamos a familias y negocios a evaluar soluciones solares diseñadas para su consumo,
+            su espacio y su estilo de vida. Desde la instalación de paneles hasta el almacenamiento con baterías,
+            el enfoque es ofrecer una experiencia clara, profesional y personalizada.
+          </p>
+
+          <div class="hqs-points">
+            <div class="hqs-point">
+              <strong>Soluciones personalizadas</strong>
+              <span>Propuestas basadas en consumo real y necesidades específicas.</span>
+            </div>
+            <div class="hqs-point">
+              <strong>Equipo certificado</strong>
+              <span>Experiencia con tecnologías como Tesla, Sonnen y Enphase.</span>
+            </div>
+            <div class="hqs-point">
+              <strong>Servicio cercano</strong>
+              <span>Acompañamiento durante la evaluación, instalación y próximos pasos.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hqs-card">
+          <h3>Contacto HQS Energy</h3>
+          <p>
+            Si deseas validar esta propuesta o conversar con el equipo, puedes comunicarte directamente con HQS Energy.
+          </p>
+
+          <div class="contact-list">
+            <div class="contact-item"><span>Teléfono</span><strong>787-922-2222</strong></div>
+            <div class="contact-item"><span>Website</span><strong>hqsenergy.com</strong></div>
+            <div class="contact-item"><span>Dirección postal</span><strong>PO Box 1377, Coamo PR 00769</strong></div>
+            <div class="contact-item"><span>Facebook</span><strong>HQS Energy</strong></div>
+            <div class="contact-item"><span>Instagram</span><strong>HQS Energy</strong></div>
+          </div>
+
+          <div class="btns">
+            <a class="btn" href="https://hqsenergy.com/" target="_blank">Visitar HQS Energy</a>
+            <a class="btn secondary" href="https://wa.me/17879222222" target="_blank">WhatsApp HQS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="asesor" class="soft">
+    <div class="container">
+      <div class="eyebrow">Tu contacto HQS Energy</div>
+      <h2 class="section-title">Asesor asignado</h2>
+      <p class="section-copy">
+        Esta propuesta fue preparada por un asesor de HQS Energy para acompañarte durante la revisión y validación final.
+      </p>
+
+      <div class="advisor-card">
+        <div class="advisor-photo" data-image-card="foto_asesor_url">
+          <img data-img="foto_asesor_url" alt="Foto del asesor HQS Energy">
+        </div>
+
+        <div class="advisor-info">
+          <h3 data-field="asesor">Asesor HQS Energy</h3>
+          <p>
+            Tu asesor estará disponible para aclarar dudas, revisar los números de la propuesta y coordinar el siguiente paso.
+          </p>
+
+          <div class="advisor-meta">
+            <div>Email: <span data-field="asesor_email">No disponible</span></div>
+            <div>Teléfono: <span data-field="asesor_telefono">No disponible</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="programa">
     <div class="container">
       <div class="program">
@@ -650,15 +1079,24 @@
       </div>
     </div>
   </section>
+  <section id="continuar" class="closing-cta">
+    <div class="container">
+      <div class="closing-panel single">
+        <div>
+          <div class="eyebrow">Próximo paso</div>
+          <h2>¿Listo para continuar?</h2>
+          <p>
+            Revisa los detalles de esta propuesta y coordina el próximo paso con el equipo de HQS Energy.
+            Tu asesor ya tiene la información necesaria para ayudarte con la validación final.
+          </p>
 
-  <section id="continuar">
-    <div class="container final">
-      <div class="eyebrow">HQS Energy</div>
-      <h2 class="section-title">Tu propuesta está lista</h2>
-      <p>Revisa los detalles y continúa con el próximo paso cuando estés listo.</p>
-
-      <div class="btns" style="justify-content:center">
-        <a class="btn" href="#" id="continueBtn">Continuar con mi propuesta</a>
+          <div class="closing-actions">
+            <a class="closing-btn" href="#" id="advisorWhatsappBtn">Hablar por WhatsApp</a>
+            <a class="closing-btn secondary" href="#" id="advisorEmailBtn">Enviar correo</a>
+            <a class="closing-btn secondary" href="https://hqsenergy.com/" target="_blank">Visitar HQS Energy</a>
+            <button class="closing-btn secondary" id="copyLink" type="button">Copiar enlace</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -668,6 +1106,7 @@
     const SUPABASE_ANON_KEY = "sb_publishable_y4_4jCvCEmaYNQ7oKsgAug_bpEonhHn";
 
     const params = new URLSearchParams(window.location.search);
+    const proposalSlug = params.get("slug");
     const proposalId = params.get("id");
 
     function formatNumber(value){
@@ -686,6 +1125,27 @@
       if(value === null || value === undefined || value === "") return;
       document.querySelectorAll(`[data-field="${field}"]`).forEach(el => {
         el.textContent = value;
+      });
+    }
+
+    function getImageValue(data, keys){
+      for(const key of keys){
+        if(data[key]) return data[key];
+      }
+      return "";
+    }
+
+    function setImage(field, value){
+      const cards = document.querySelectorAll(`[data-image-card="${field}"]`);
+      const imgs = document.querySelectorAll(`[data-img="${field}"]`);
+
+      if(!value){
+        cards.forEach(card => card.classList.add("is-hidden"));
+        return;
+      }
+
+      imgs.forEach(img => {
+        img.src = value;
       });
     }
 
@@ -708,17 +1168,59 @@
       setField("utility", data.utility || "LUMA Energy");
       setField("termino", "25");
 
-      const imageUrl = data.imagen_aerea_url || data.foto_propiedad_url;
-      if(imageUrl){
-        const visual = document.querySelector(".visual-card");
-        if(visual){
-          visual.style.background = `
-            linear-gradient(180deg,rgba(14,42,71,.10),rgba(14,42,71,.10)),
-            url("${imageUrl}")
-          `;
-          visual.style.backgroundSize = "cover";
-          visual.style.backgroundPosition = "center";
+      setField("asesor", data.asesor);
+      setField("asesor_email", data.asesor_email);
+      setField("asesor_telefono", data.asesor_telefono);
+
+      const fotoPropiedad = getImageValue(data, ["foto_propiedad_url", "fachada_url", "foto_fachada_url"]);
+      const imagenAerea = getImageValue(data, ["imagen_aerea_url", "foto_aerea_url", "aerea_url"]);
+      const fotoAsesor = getImageValue(data, ["foto_asesor_url", "advisor_photo_url"]);
+      const facturaLuma = getImageValue(data, ["factura_luma_url", "factura_url", "luma_bill_url", "pdf_propuesta_url", "logo_utility_url"]);
+
+      setImage("foto_propiedad_url", fotoPropiedad);
+      setImage("imagen_aerea_url", imagenAerea);
+      setImage("foto_asesor_url", fotoAsesor);
+      setImage("factura_luma_url", facturaLuma);
+
+      const mainVisual = document.getElementById("mainPropertyVisual");
+      const mainImage = imagenAerea || fotoPropiedad;
+      if(mainVisual && mainImage){
+        mainVisual.style.background = `
+          linear-gradient(180deg,rgba(14,42,71,.10),rgba(14,42,71,.10)),
+          url("${mainImage}")
+        `;
+        mainVisual.style.backgroundSize = "cover";
+        mainVisual.style.backgroundPosition = "center";
+      }
+
+
+
+      const currentUrl = window.location.href;
+      const advisorPhone = data.asesor_telefono || "7879222222";
+      const advisorEmail = data.asesor_email || "";
+
+      const advisorWhatsappBtn = document.getElementById("advisorWhatsappBtn");
+      if(advisorWhatsappBtn){
+        const message = `Hola, revisé mi propuesta energética de HQS Energy y quiero coordinar el próximo paso.%0A%0APropuesta: ${currentUrl}`;
+        advisorWhatsappBtn.href = `https://wa.me/${String(advisorPhone).replace(/\D/g, "")}?text=${message}`;
+        advisorWhatsappBtn.target = "_blank";
+      }
+
+      const advisorEmailBtn = document.getElementById("advisorEmailBtn");
+      if(advisorEmailBtn){
+        if(advisorEmail){
+          advisorEmailBtn.href = `mailto:${advisorEmail}?subject=${encodeURIComponent("Revisión de propuesta HQS Energy")}&body=${encodeURIComponent("Hola, revisé mi propuesta energética y quiero coordinar el próximo paso.\n\n" + currentUrl)}`;
+        }else{
+          advisorEmailBtn.classList.add("is-hidden");
         }
+      }
+
+      const copyLink = document.getElementById("copyLink");
+      if(copyLink){
+        copyLink.onclick = async () => {
+          await navigator.clipboard.writeText(currentUrl);
+          copyLink.textContent = "Enlace copiado";
+        };
       }
 
       const whatsapp = params.get("whatsapp");
@@ -729,13 +1231,15 @@
     }
 
     async function loadProposal(){
-      if(!proposalId){
-        console.warn("No proposal id provided. Use ?id=1");
+      if(!proposalSlug && !proposalId){
+        console.warn("No proposal slug or id provided. Use ?slug=cliente-pueblo or ?id=1");
         return;
       }
 
       try{
-        const url = `${SUPABASE_URL}/rest/v1/proposals?id=eq.${encodeURIComponent(proposalId)}&select=*`;
+        const url = proposalSlug
+          ? `${SUPABASE_URL}/rest/v1/proposals?slug=eq.${encodeURIComponent(proposalSlug)}&select=*`
+          : `${SUPABASE_URL}/rest/v1/proposals?id=eq.${encodeURIComponent(proposalId)}&select=*`;
 
         const response = await fetch(url, {
           headers: {
@@ -755,7 +1259,7 @@
         const rows = await response.json();
 
         if(!rows || rows.length === 0){
-          alert("No se encontró una propuesta con ese ID.");
+          alert("No se encontró una propuesta con ese enlace.");
           return;
         }
 
