@@ -832,9 +832,175 @@
       letter-spacing:-.025em;
     }
 
+
+    .finance-section{
+      background:
+        radial-gradient(circle at 18% 20%,rgba(53,174,226,.12),transparent 30%),
+        radial-gradient(circle at 86% 72%,rgba(245,166,35,.16),transparent 30%),
+        linear-gradient(135deg,#F8FBFD,#FFFFFF);
+    }
+
+    .finance-panel{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:42px;
+      padding:40px;
+      box-shadow:0 26px 85px rgba(16,24,40,.10);
+    }
+
+    .finance-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:30px;
+    }
+
+    .finance-card{
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:28px;
+      background:#fff;
+      min-height:260px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      box-shadow:0 18px 55px rgba(16,24,40,.05);
+    }
+
+    .finance-card.dark{
+      background:linear-gradient(145deg,#071F38,#0F4774);
+      color:white;
+      border:none;
+    }
+
+    .finance-card small{
+      color:var(--gold);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:12px;
+    }
+
+    .finance-card h3{
+      color:var(--dark);
+      font-size:30px;
+      line-height:1.05;
+      letter-spacing:-.04em;
+      margin:16px 0;
+    }
+
+    .finance-card.dark h3{color:white}
+
+    .finance-card p{
+      color:var(--muted);
+      font-size:17px;
+    }
+
+    .finance-card.dark p{color:rgba(255,255,255,.76)}
+
+    .finance-price{
+      font-size:clamp(42px,5vw,64px);
+      font-weight:950;
+      letter-spacing:-.06em;
+      line-height:.9;
+      color:var(--dark);
+      margin:16px 0 8px;
+    }
+
+    .finance-card.dark .finance-price{color:white}
+
+    .logic-note{
+      margin-top:26px;
+      border-radius:30px;
+      background:linear-gradient(135deg,rgba(53,174,226,.10),rgba(245,166,35,.16));
+      border:1px solid rgba(53,174,226,.16);
+      padding:28px;
+    }
+
+    .logic-note strong{
+      display:block;
+      color:var(--dark);
+      font-size:28px;
+      line-height:1.05;
+      letter-spacing:-.035em;
+      margin-bottom:10px;
+    }
+
+    .logic-note p{
+      color:var(--muted);
+      font-size:18px;
+      max-width:980px;
+    }
+
+    .bill-analysis{
+      margin-top:30px;
+      display:grid;
+      grid-template-columns:1fr .9fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .bill-image{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:36px;
+      overflow:hidden;
+      box-shadow:0 24px 70px rgba(16,24,40,.10);
+      min-height:420px;
+    }
+
+    .bill-image img{
+      width:100%;
+      height:100%;
+      min-height:420px;
+      object-fit:cover;
+    }
+
+    .bill-data{
+      background:linear-gradient(145deg,#071F38,#0F4774);
+      color:white;
+      border-radius:36px;
+      padding:34px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .bill-data h3{
+      font-size:36px;
+      line-height:1;
+      letter-spacing:-.045em;
+      margin-bottom:18px;
+    }
+
+    .bill-data p{
+      color:rgba(255,255,255,.76);
+      font-size:18px;
+      margin-bottom:22px;
+    }
+
+    .bill-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .bill-list div{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      border-top:1px solid rgba(255,255,255,.16);
+      padding-top:14px;
+      color:rgba(255,255,255,.78);
+    }
+
+    .bill-list strong{
+      color:white;
+      text-align:right;
+    }
+
     @media(max-width:900px){
       .nav-links{display:none}
-      .story-grid,.summary,.comparison,.savings,.system-grid,.program-grid,.steps,.photo-grid,.advisor-card,.hqs-grid,.hqs-points,.closing-panel,.install-grid{grid-template-columns:1fr}
+      .story-grid,.summary,.comparison,.savings,.system-grid,.program-grid,.steps,.photo-grid,.advisor-card,.hqs-grid,.hqs-points,.closing-panel,.install-grid,.finance-grid,.bill-analysis{grid-template-columns:1fr}
       .vs{justify-self:center}
       section{padding:70px 6vw}
       .hero{padding-top:130px}
@@ -854,6 +1020,7 @@
       <a href="#historia">Historia</a>
       <a href="#luma">LUMA</a>
       <a href="#comparacion">Comparación</a>
+      <a href="#logica-financiera">Lógica financiera</a>
       <a href="#fotos">Fotos</a>
       <a href="#instalaciones">Instalaciones</a>
       <a href="#hqs">HQS</a>
@@ -1010,12 +1177,86 @@
     </div>
   </section>
 
+  <section id="logica-financiera" class="finance-section">
+    <div class="container">
+      <div class="finance-panel">
+        <div class="eyebrow">Lógica financiera y respaldo energético</div>
+        <h2 class="section-title">La diferencia no es solo el pago mensual. Es lo que ese pago incluye.</h2>
+        <p class="section-copy">
+          Cuando una propuesta incluye batería, la comparación no debe verse únicamente como LUMA vs solar.
+          La comparación correcta es entre seguir dependiendo totalmente de la red o contar con una solución que integra producción solar,
+          almacenamiento y respaldo energético para tu hogar.
+        </p>
+
+        <div class="finance-grid">
+          <div class="finance-card">
+            <div>
+              <small>Escenario actual</small>
+              <h3>LUMA</h3>
+              <div class="finance-price">$<span data-field="factura">285</span></div>
+              <p>Pago mensual estimado por energía de la red. No incluye respaldo automático durante interrupciones.</p>
+            </div>
+          </div>
+
+          <div class="finance-card">
+            <div>
+              <small>Alternativa común</small>
+              <h3>LUMA + generador</h3>
+              <div class="finance-price">Costo variable</div>
+              <p>Puede requerir compra inicial, gasolina, mantenimiento, ruido, manejo manual y gastos adicionales cada vez que se usa.</p>
+            </div>
+          </div>
+
+          <div class="finance-card dark">
+            <div>
+              <small>Propuesta HQS Energy</small>
+              <h3>Solar + batería</h3>
+              <div class="finance-price">$<span data-field="pago">210</span></div>
+              <p>Integra producción solar, respaldo con batería y una solución energética diseñada para mayor estabilidad.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="logic-note">
+          <strong>La pregunta no es solamente cuánto pagas hoy. La pregunta es qué pasa cuando la red falla.</strong>
+          <p>
+            Con LUMA, tu pago mensual cubre consumo eléctrico. Con HQS Energy, esta propuesta integra producción solar,
+            almacenamiento y respaldo energético para ayudarte a reducir dependencia de la red y proteger la continuidad energética de tu hogar.
+          </p>
+        </div>
+
+        <div class="bill-analysis" data-image-card="factura_luma_url">
+          <div class="bill-image">
+            <img data-img="factura_luma_url" alt="Información energética de LUMA utilizada para la evaluación">
+          </div>
+
+          <div class="bill-data">
+            <div class="eyebrow">Información utilizada</div>
+            <h3>Factura LUMA analizada</h3>
+            <p>
+              Esta imagen corresponde a la información energética suministrada durante la evaluación.
+              A partir de estos datos se analiza el consumo histórico y se prepara una recomendación alineada a la realidad del hogar.
+            </p>
+
+            <div class="bill-list">
+              <div><span>Proveedor actual</span><strong data-field="utility">LUMA Energy</strong></div>
+              <div><span>Factura promedio</span><strong>$<span data-field="factura">285</span>/mes</strong></div>
+              <div><span>Consumo mensual</span><strong><span data-field="consumo_mensual">960</span> kWh</strong></div>
+              <div><span>Consumo anual</span><strong><span data-field="consumo">11,520</span> kWh</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="fotos">
     <div class="container">
       <div class="eyebrow">Residencia evaluada</div>
-      <h2 class="section-title">Fotos usadas para preparar esta propuesta</h2>
+      <h2 class="section-title">Fotos utilizadas para diseñar tu propuesta</h2>
       <p class="section-copy">
-        Estas imágenes documentan la propiedad, la vista aérea y la factura de LUMA utilizada como referencia energética.
+        Estas imágenes corresponden a la información recopilada durante la evaluación: foto de la propiedad y contador,
+        e imagen aérea para referencia visual del techo y área disponible.
       </p>
 
       <div class="photo-grid">
@@ -1031,16 +1272,8 @@
           <div class="photo-card" data-image-card="foto_propiedad_url">
             <img data-img="foto_propiedad_url" alt="Foto de fachada o propiedad">
             <div class="photo-caption">
-              <small>Fachada / propiedad</small>
-              <strong>Foto de la residencia evaluada</strong>
-            </div>
-          </div>
-
-          <div class="photo-card" data-image-card="factura_luma_url">
-            <img data-img="factura_luma_url" alt="Factura de LUMA">
-            <div class="photo-caption">
-              <small>Factura LUMA</small>
-              <strong>Documento usado para validar el consumo</strong>
+              <small>Propiedad y contador</small>
+              <strong>Foto utilizada para validar la residencia y referencia eléctrica</strong>
             </div>
           </div>
         </div>
@@ -1059,7 +1292,7 @@
 
       <div class="install-grid">
         <div class="install-card">
-          <img src="./assets/hqs-install-1.jpg" alt="Instalación solar realizada por HQS Energy">
+          <img src="./assets/hqs-install-1.jpeg" alt="Instalación solar realizada por HQS Energy">
           <div class="install-caption">
             <small>Proyecto residencial</small>
             <strong>Solución solar instalada por HQS Energy</strong>
@@ -1067,7 +1300,7 @@
         </div>
 
         <div class="install-card">
-          <img src="./assets/hqs-install-2.jpg" alt="Sistema solar residencial HQS Energy">
+          <img src="./assets/hqs-install-2.jpeg" alt="Sistema solar residencial HQS Energy">
           <div class="install-caption">
             <small>Equipo instalado</small>
             <strong>Diseño profesional y ejecución limpia</strong>
@@ -1075,7 +1308,7 @@
         </div>
 
         <div class="install-card">
-          <img src="./assets/hqs-install-3.jpg" alt="Paneles solares instalados por HQS Energy">
+          <img src="./assets/hqs-install-3.jpeg" alt="Paneles solares instalados por HQS Energy">
           <div class="install-caption">
             <small>Energía para Puerto Rico</small>
             <strong>Más hogares tomando control de su energía</strong>
@@ -1282,6 +1515,7 @@
       setField("pueblo", data.pueblo);
       setField("fecha", data.fecha);
       setField("consumo", formatNumber(data.consumo));
+      setField("consumo_mensual", formatNumber(data.consumo_mensual));
       setField("factura", formatNumber(data.factura));
       setField("sistema", formatNumber(data.sistema));
       setField("produccion", formatNumber(data.produccion));
