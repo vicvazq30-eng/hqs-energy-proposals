@@ -750,9 +750,91 @@
       font-weight:700;
     }
 
+
+    .system-detail-card{
+      margin-top:22px;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:26px;
+      box-shadow:0 18px 55px rgba(16,24,40,.06);
+    }
+
+    .system-detail-card small{
+      display:block;
+      color:var(--gold);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:12px;
+      margin-bottom:10px;
+    }
+
+    .system-detail-card p{
+      color:var(--muted);
+      font-size:18px;
+      white-space:pre-line;
+    }
+
+    .install-section{
+      background:white;
+    }
+
+    .install-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .install-card{
+      border-radius:34px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:white;
+      box-shadow:0 24px 70px rgba(16,24,40,.10);
+      min-height:430px;
+      position:relative;
+    }
+
+    .install-card img{
+      width:100%;
+      height:430px;
+      object-fit:cover;
+    }
+
+    .install-caption{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.72);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .install-caption small{
+      display:block;
+      color:var(--gold);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:11px;
+      margin-bottom:5px;
+    }
+
+    .install-caption strong{
+      display:block;
+      color:var(--dark);
+      font-size:19px;
+      letter-spacing:-.025em;
+    }
+
     @media(max-width:900px){
       .nav-links{display:none}
-      .story-grid,.summary,.comparison,.savings,.system-grid,.program-grid,.steps,.photo-grid,.advisor-card,.hqs-grid,.hqs-points,.closing-panel{grid-template-columns:1fr}
+      .story-grid,.summary,.comparison,.savings,.system-grid,.program-grid,.steps,.photo-grid,.advisor-card,.hqs-grid,.hqs-points,.closing-panel,.install-grid{grid-template-columns:1fr}
       .vs{justify-self:center}
       section{padding:70px 6vw}
       .hero{padding-top:130px}
@@ -773,6 +855,7 @@
       <a href="#luma">LUMA</a>
       <a href="#comparacion">Comparación</a>
       <a href="#fotos">Fotos</a>
+      <a href="#instalaciones">Instalaciones</a>
       <a href="#hqs">HQS</a>
       <a href="#asesor">Asesor</a>
       <a href="#pasos">Pasos</a>
@@ -867,6 +950,11 @@
           <div class="summary-card"><small>Cobertura estimada</small><strong><span data-field="offset">110</span>%</strong></div>
           <div class="summary-card"><small>Respaldo</small><strong data-field="bateria">Powerwall 3</strong></div>
         </div>
+
+        <div class="system-detail-card" data-detail-card="detalles_equipo">
+          <small>Detalles del sistema propuesto</small>
+          <p data-field="detalles_equipo">Paneles, batería y configuración final según evaluación de HQS Energy.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -954,6 +1042,43 @@
               <small>Factura LUMA</small>
               <strong>Documento usado para validar el consumo</strong>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="instalaciones" class="install-section">
+    <div class="container">
+      <div class="eyebrow">Experiencia HQS Energy</div>
+      <h2 class="section-title">Instalaciones realizadas por nuestro equipo</h2>
+      <p class="section-copy">
+        Además de evaluar tu propiedad, queremos que puedas ver ejemplos reales de trabajos realizados por HQS Energy.
+        Cada instalación refleja nuestro compromiso con soluciones limpias, ordenadas y preparadas para las necesidades de cada hogar.
+      </p>
+
+      <div class="install-grid">
+        <div class="install-card">
+          <img src="./assets/hqs-install-1.jpg" alt="Instalación solar realizada por HQS Energy">
+          <div class="install-caption">
+            <small>Proyecto residencial</small>
+            <strong>Solución solar instalada por HQS Energy</strong>
+          </div>
+        </div>
+
+        <div class="install-card">
+          <img src="./assets/hqs-install-2.jpg" alt="Sistema solar residencial HQS Energy">
+          <div class="install-caption">
+            <small>Equipo instalado</small>
+            <strong>Diseño profesional y ejecución limpia</strong>
+          </div>
+        </div>
+
+        <div class="install-card">
+          <img src="./assets/hqs-install-3.jpg" alt="Paneles solares instalados por HQS Energy">
+          <div class="install-caption">
+            <small>Energía para Puerto Rico</small>
+            <strong>Más hogares tomando control de su energía</strong>
           </div>
         </div>
       </div>
@@ -1167,6 +1292,12 @@
       setField("bateria", data.bateria || "Powerwall 3");
       setField("utility", data.utility || "LUMA Energy");
       setField("termino", "25");
+      setField("detalles_equipo", data.detalles_equipo);
+
+      const detailsCard = document.querySelector('[data-detail-card="detalles_equipo"]');
+      if(detailsCard && (!data.detalles_equipo || String(data.detalles_equipo).trim() === "")){
+        detailsCard.classList.add("is-hidden");
+      }
 
       setField("asesor", data.asesor);
       setField("asesor_email", data.asesor_email);
