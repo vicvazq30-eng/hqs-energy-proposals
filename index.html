@@ -83,6 +83,7 @@
       height:100%;
       object-fit:cover;
       z-index:0;
+      display:block;
     }
 
     .hero:after{
@@ -91,19 +92,18 @@
       inset:0;
       z-index:1;
       pointer-events:none;
-      background:
-        linear-gradient(180deg,rgba(7,31,56,.10) 0%,rgba(7,31,56,.04) 52%,rgba(7,31,56,.22) 100%);
+      background:linear-gradient(180deg,rgba(7,31,56,.00) 0%,rgba(7,31,56,.02) 60%,rgba(7,31,56,.16) 100%);
     }
 
-    .intro-hero{
-      padding:82px 6vw 88px;
+    .proposal-intro{
+      padding:78px 6vw 86px;
       background:
-        radial-gradient(circle at 18% 10%,rgba(53,174,226,.10),transparent 28%),
-        radial-gradient(circle at 86% 76%,rgba(245,166,35,.12),transparent 30%),
+        radial-gradient(circle at 18% 12%,rgba(53,174,226,.10),transparent 28%),
+        radial-gradient(circle at 86% 78%,rgba(245,166,35,.12),transparent 30%),
         linear-gradient(135deg,#FFFFFF,#F8FBFD);
     }
 
-    .intro-inner{
+    .proposal-intro-inner{
       max-width:1180px;
       margin:auto;
       display:grid;
@@ -112,7 +112,7 @@
       align-items:end;
     }
 
-    .intro-copy h1{
+    .proposal-intro-copy h1{
       color:var(--dark);
       font-size:clamp(52px,8vw,112px);
       line-height:.9;
@@ -121,14 +121,14 @@
       margin-bottom:26px;
     }
 
-    .intro-copy p{
+    .proposal-intro-copy p{
       color:var(--muted);
       font-size:clamp(20px,2.2vw,28px);
       max-width:880px;
       line-height:1.35;
     }
 
-    .intro-card{
+    .proposal-intro-card{
       background:white;
       border:1px solid var(--line);
       border-radius:34px;
@@ -136,7 +136,7 @@
       box-shadow:0 24px 80px rgba(16,24,40,.10);
     }
 
-    .intro-card small{
+    .proposal-intro-card small{
       display:block;
       color:var(--gold);
       font-weight:900;
@@ -146,7 +146,7 @@
       margin-bottom:12px;
     }
 
-    .intro-card strong{
+    .proposal-intro-card strong{
       display:block;
       color:var(--dark);
       font-size:clamp(32px,4vw,48px);
@@ -155,7 +155,7 @@
       margin-bottom:12px;
     }
 
-    .intro-card span{
+    .proposal-intro-card span{
       color:var(--muted);
       font-weight:800;
       font-size:18px;
@@ -171,7 +171,7 @@
     }
 
     h1{
-      font-size:clamp(50px,7.8vw,104px);
+      font-size:clamp(58px,9vw,130px);
       line-height:.9;
       letter-spacing:-.07em;
       max-width:1120px;
@@ -1060,13 +1060,11 @@
 
     @media(max-width:900px){
       .nav-links{display:none}
-      .hero{height:72vh;min-height:460px}
-      .intro-inner{grid-template-columns:1fr}
       .story-grid,.summary,.comparison,.savings,.system-grid,.program-grid,.steps,.photo-grid,.advisor-card,.hqs-grid,.hqs-points,.closing-panel,.install-grid,.finance-grid,.bill-analysis{grid-template-columns:1fr}
       .vs{justify-self:center}
       section{padding:70px 6vw}
       .hero{height:72vh;min-height:460px}
-      .intro-inner{grid-template-columns:1fr}
+      .proposal-intro-inner{grid-template-columns:1fr}
       h1{font-size:clamp(48px,13vw,82px)}
       .hero-copy{font-size:20px}
       .client-name{font-size:42px}
@@ -1094,14 +1092,15 @@
   </nav>
 
   <header class="hero" aria-label="Video promocional HQS Energy">
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+      <source src="/assets/hqs-energy-promo.mp4" type="video/mp4">
       <source src="./assets/hqs-energy-promo.mp4" type="video/mp4">
     </video>
   </header>
 
-  <section class="intro-hero">
-    <div class="intro-inner">
-      <div class="intro-copy">
+  <section class="proposal-intro">
+    <div class="proposal-intro-inner">
+      <div class="proposal-intro-copy">
         <div class="eyebrow">Propuesta residencial personalizada</div>
         <h1>Hola, <span data-field="cliente">Natalie</span>.</h1>
         <p>
@@ -1114,7 +1113,7 @@
         </div>
       </div>
 
-      <div class="intro-card">
+      <div class="proposal-intro-card">
         <small>Propuesta preparada para</small>
         <strong data-field="cliente_completo">Natalie Torres</strong>
         <span>
