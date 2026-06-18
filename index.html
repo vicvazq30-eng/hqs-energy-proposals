@@ -1065,8 +1065,6 @@
       .story-grid,.summary,.comparison,.savings,.system-grid,.program-grid,.steps,.photo-grid,.advisor-card,.hqs-grid,.hqs-points,.closing-panel,.install-grid,.finance-grid,.bill-analysis{grid-template-columns:1fr}
       .vs{justify-self:center}
       section{padding:70px 6vw}
-      .hero{height:72vh;min-height:460px}
-      .intro-inner{grid-template-columns:1fr}
       h1{font-size:clamp(48px,13vw,82px)}
       .hero-copy{font-size:20px}
       .client-name{font-size:42px}
@@ -1094,7 +1092,8 @@
   </nav>
 
   <header class="hero" aria-label="Video promocional HQS Energy">
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+      <source src="/assets/hqs-energy-promo.mp4" type="video/mp4">
       <source src="./assets/hqs-energy-promo.mp4" type="video/mp4">
     </video>
   </header>
@@ -1363,7 +1362,7 @@
 
       <div class="install-grid">
         <div class="install-card">
-          <img src="./assets/hqs-install-1.jpg" alt="Instalación solar realizada por HQS Energy">
+          <img src="./assets/hqs-install-1.jpg" onerror="this.onerror=null;this.src='./assets/hqs-install-1.jpeg';" alt="Instalación solar realizada por HQS Energy">
           <div class="install-caption">
             <small>Proyecto residencial</small>
             <strong>Solución solar instalada por HQS Energy</strong>
@@ -1371,7 +1370,7 @@
         </div>
 
         <div class="install-card">
-          <img src="./assets/hqs-install-2.jpg" alt="Sistema solar residencial HQS Energy">
+          <img src="./assets/hqs-install-2.jpg" onerror="this.onerror=null;this.src='./assets/hqs-install-2.jpeg';" alt="Sistema solar residencial HQS Energy">
           <div class="install-caption">
             <small>Equipo instalado</small>
             <strong>Diseño profesional y ejecución limpia</strong>
@@ -1379,7 +1378,7 @@
         </div>
 
         <div class="install-card">
-          <img src="./assets/hqs-install-3.jpg" alt="Paneles solares instalados por HQS Energy">
+          <img src="./assets/hqs-install-3.jpg" onerror="this.onerror=null;this.src='./assets/hqs-install-3.jpeg';" alt="Paneles solares instalados por HQS Energy">
           <div class="install-caption">
             <small>Energía para Puerto Rico</small>
             <strong>Más hogares tomando control de su energía</strong>
@@ -1564,17 +1563,66 @@
       return "";
     }
 
+    function cleanFileUrl(value){
+      if(!value) return "";
+
+      if(Array.isArray(value)){
+        value = value[0] || "";
+      }
+
+      if(typeof value === "object"){
+        value = value.url || value.fileUrl || value.link || value.href || value.name || "";
+      }
+
+      value = String(value).trim();
+
+      if(value.startsWith("[") && value.endsWith("]")){
+        try{
+          const parsed = JSON.parse(value);
+          value = Array.isArray(parsed) ? (parsed[0] || "") : value;
+        }catch(e){}
+      }
+
+      if(value.includes(",")){
+        const possibleUrls = value
+          .split(",")
+          .map(item => item.trim())
+          .filter(item => item.startsWith("http") || item.startsWith("/"));
+        if(possibleUrls.length > 0){
+          value = possibleUrls[0];
+        }
+      }
+
+      value = String(value)
+        .replace(/^["']|["']$/g, "")
+        .trim();
+
+      return value;
+    }
+
     function setImage(field, value){
       const cards = document.querySelectorAll(`[data-image-card="${field}"]`);
       const imgs = document.querySelectorAll(`[data-img="${field}"]`);
+      const cleanUrl = cleanFileUrl(value);
 
-      if(!value){
+      if(!cleanUrl){
         cards.forEach(card => card.classList.add("is-hidden"));
         return;
       }
 
+      cards.forEach(card => card.classList.remove("is-hidden"));
+
       imgs.forEach(img => {
-        img.src = value;
+        img.src = cleanUrl;
+        img.onerror = () => {
+          const encodedUrl = cleanUrl.replace(/ /g, "%20");
+          if(img.src !== encodedUrl){
+            img.src = encodedUrl;
+          }else{
+            const card = img.closest("[data-image-card]");
+            if(card) card.classList.add("is-hidden");
+          }
+        };
       });
     }
 
@@ -1619,7 +1667,7 @@
       setImage("factura_luma_url", facturaLuma);
 
       const mainVisual = document.getElementById("mainPropertyVisual");
-      const mainImage = imagenAerea || fotoPropiedad;
+      const mainImage = cleanFileUrl(imagenAerea || fotoPropiedad);
       if(mainVisual && mainImage){
         mainVisual.style.background = `
           linear-gradient(180deg,rgba(14,42,71,.10),rgba(14,42,71,.10)),
